@@ -1,0 +1,107 @@
+# BrainSync Pro - Git Ignore File
+# Comprehensive security-first approach
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+build/
+dist/
+.next/
+out/
+
+# React/Next.js specific
+.cache/
+.parcel-cache/
+
+# Testing
+coverage/
+.nyc_output/
+.coverage/
+
+# All environment and configuration files
+.env*
+config/
+env.*
+*.env
+*.key
+*.pem
+
+# All potentially sensitive files
+Access*
+*Keys*
+*keys*
+*secret*
+*Secret*
+*API*
+*api*
+*token*
+*Token*
+*cred*
+*Cred*
+
+# Exclude ALL n8n related files
+n8n-*
+*n8n*
+*workflow*
+*Workflow*
+
+# Exclude docs that might contain sensitive info
+docs/n8n*
+docs/*deploy*
+docs/*api*
+docs/*key*
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Temporary folders
+tmp/
+temp/
+.tmp/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backup files
+*.backup
+*.bak
+*.orig
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+
+# Personal notes that might contain sensitive info
+notes.md
+TODO.md
+SCRATCH.md 
