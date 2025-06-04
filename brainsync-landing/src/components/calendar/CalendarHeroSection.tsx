@@ -183,7 +183,7 @@ const CalendarHeroSection = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-adhd-light via-white to-blue-50 pt-20 pb-24">
       {/* Messaging Toggle - Fixed position in top-left */}
-      <div className="fixed top-4 left-4 z-50 bg-white rounded-lg shadow-lg border border-gray-200 p-2 flex space-x-1">
+      <div className="fixed top-4 left-4 z-50 bg-white rounded-lg shadow-lg border border-gray-200 p-2 flex space-x-1 hidden sm:flex">
         <button
           onClick={() => setShowNewMessaging(false)}
           className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -206,57 +206,81 @@ const CalendarHeroSection = () => {
         </button>
       </div>
 
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-20">
           {/* Left Column - Text Content */}
-          <div className="space-y-8">
-            <div className="space-y-6">
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">
+          <div className="space-y-6 lg:space-y-8">
+            <div className="space-y-4 lg:space-y-6">
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-3 py-2 lg:px-4 lg:py-2 rounded-full text-sm font-medium">
                 <Calendar className="w-4 h-4" />
-                <span>{messaging.badge}</span>
+                <span className="text-xs sm:text-sm">{messaging.badge}</span>
               </div>
               
-              <h1 className="text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
+              {/* Mobile Messaging Toggle */}
+              <div className="flex sm:hidden bg-white rounded-lg shadow-md border border-gray-200 p-1 w-fit">
+                <button
+                  onClick={() => setShowNewMessaging(false)}
+                  className={`px-2 py-1 rounded-md text-xs font-medium transition-colors ${
+                    !showNewMessaging
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                >
+                  Old (Sunday Planning)
+                </button>
+                <button
+                  onClick={() => setShowNewMessaging(true)}
+                  className={`px-2 py-1 rounded-md text-xs font-medium transition-colors ${
+                    showNewMessaging
+                      ? 'bg-purple-600 text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                >
+                  New (ADHD-focused)
+                </button>
+              </div>
+              
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight">
                 {messaging.headline}
                 <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{messaging.headlineHighlight}</span>
               </h1>
               
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
                 {messaging.subheadline}
               </p>
             </div>
 
-            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-6 border-l-4 border-yellow-400">
+            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 lg:p-6 border-l-4 border-yellow-400">
               <div className="flex items-start space-x-3">
-                <Smile className="w-6 h-6 text-yellow-600 mt-1 flex-shrink-0" />
+                <Smile className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-600 mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="font-bold text-yellow-900 mb-1">{messaging.realityCheck.title}</h3>
-                  <p className="text-yellow-800">
+                  <h3 className="font-bold text-yellow-900 mb-1 text-sm lg:text-base">{messaging.realityCheck.title}</h3>
+                  <p className="text-yellow-800 text-sm lg:text-base">
                     {messaging.realityCheck.content}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
               {messaging.features.map((feature, index) => (
                 <div key={index} className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg flex items-center justify-center">
-                    <feature.icon className="w-6 h-6 text-purple-600" />
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg flex items-center justify-center">
+                    <feature.icon className="w-5 h-5 lg:w-6 lg:h-6 text-purple-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">{feature.title}</h3>
-                    <p className="text-sm text-gray-600">{feature.desc}</p>
+                    <h3 className="font-semibold text-gray-900 text-sm lg:text-base">{feature.title}</h3>
+                    <p className="text-xs lg:text-sm text-gray-600">{feature.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-lg">
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
+              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-lg text-sm lg:text-base">
                 {messaging.cta1}
               </button>
-              <button className="border-2 border-purple-300 text-purple-700 px-8 py-4 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
+              <button className="border-2 border-purple-300 text-purple-700 px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-purple-50 transition-colors text-sm lg:text-base">
                 {messaging.cta2}
               </button>
             </div>
@@ -264,44 +288,44 @@ const CalendarHeroSection = () => {
 
           {/* Right Column - Interactive Phone Demo */}
           <div className="relative">
-            <div className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-100">
-              <div className="space-y-8">
+            <div className="bg-white rounded-2xl shadow-2xl p-4 lg:p-8 border border-gray-100">
+              <div className="space-y-6 lg:space-y-8">
                 {/* Navigation Header */}
                 <div className="text-center">
-                  <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-5 py-3 rounded-full text-lg font-medium mb-8">
-                    <Sparkles className="w-5 h-5" />
+                  <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-4 py-2 lg:px-5 lg:py-3 rounded-full text-sm lg:text-lg font-medium mb-6 lg:mb-8">
+                    <Sparkles className="w-4 h-4 lg:w-5 lg:h-5" />
                     <span>Interactive Demo</span>
                   </div>
                   
                   {/* Feature Navigation */}
-                  <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center justify-between mb-6 lg:mb-8">
                     <button 
                       onClick={prevPreview}
-                      className="p-4 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                      className="p-2 lg:p-4 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
                     >
-                      <ChevronLeft className="w-7 h-7 text-gray-600" />
+                      <ChevronLeft className="w-5 h-5 lg:w-7 lg:h-7 text-gray-600" />
                     </button>
                     
-                    <div className="text-center flex-1">
-                      <h3 className="text-3xl font-bold text-gray-900">{currentFeature.title}</h3>
-                      <p className="text-gray-600 text-xl mt-2">{currentFeature.subtitle}</p>
+                    <div className="text-center flex-1 px-2">
+                      <h3 className="text-lg lg:text-3xl font-bold text-gray-900">{currentFeature.title}</h3>
+                      <p className="text-gray-600 text-sm lg:text-xl mt-1 lg:mt-2">{currentFeature.subtitle}</p>
                     </div>
                     
                     <button 
                       onClick={nextPreview}
-                      className="p-4 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                      className="p-2 lg:p-4 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
                     >
-                      <ChevronRight className="w-7 h-7 text-gray-600" />
+                      <ChevronRight className="w-5 h-5 lg:w-7 lg:h-7 text-gray-600" />
                     </button>
                   </div>
 
                   {/* Feature Dots */}
-                  <div className="flex justify-center space-x-3 mb-8">
+                  <div className="flex justify-center space-x-2 lg:space-x-3 mb-6 lg:mb-8">
                     {previewFeatures.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setPreview(index)}
-                        className={`w-4 h-4 rounded-full transition-colors ${
+                        className={`w-3 h-3 lg:w-4 lg:h-4 rounded-full transition-colors ${
                           index === activePreview ? 'bg-purple-600' : 'bg-gray-300'
                         }`}
                       />
@@ -310,13 +334,13 @@ const CalendarHeroSection = () => {
                 </div>
                 
                 {/* Phone Screen Mockup */}
-                <div className="bg-gray-900 rounded-3xl p-4 shadow-xl">
-                  <div className="bg-white rounded-2xl p-4 h-[56rem] flex flex-col">
+                <div className="bg-gray-900 rounded-3xl p-3 lg:p-4 shadow-xl">
+                  <div className="bg-white rounded-2xl p-3 lg:p-4 h-[32rem] sm:h-[40rem] lg:h-[56rem] flex flex-col">
                     
                     {/* Phone Status Bar */}
-                    <div className="flex items-center justify-between px-2 py-2 mb-4">
+                    <div className="flex items-center justify-between px-2 py-2 mb-3 lg:mb-4">
                       <div className="flex items-center space-x-1">
-                        <span className="text-lg font-semibold text-gray-900">{currentFeature.time}</span>
+                        <span className="text-sm lg:text-lg font-semibold text-gray-900">{currentFeature.time}</span>
                       </div>
                       <div className="flex items-center space-x-1">
                         {/* Signal bars */}
@@ -327,33 +351,33 @@ const CalendarHeroSection = () => {
                           <div className="w-1 h-4 bg-gray-900 rounded-full"></div>
                         </div>
                         {/* WiFi icon */}
-                        <svg className="w-4 h-4 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
+                        <svg className="w-3 h-3 lg:w-4 lg:h-4 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A1 1 0 01.808 6.808c5.076-5.077 13.308-5.077 18.384 0a1 1 0 01-1.414 1.414zM14.95 11.05a7 7 0 00-9.9 0 1 1 0 01-1.414-1.414 9 9 0 0112.728 0 1 1 0 01-1.414 1.414zM12.12 13.88a3 3 0 00-4.24 0 1 1 0 01-1.415-1.415 5 5 0 017.07 0 1 1 0 01-1.415 1.415zM9 16a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clipRule="evenodd" />
                         </svg>
                         {/* Battery */}
                         <div className="flex items-center">
-                          <div className="w-6 h-3 border border-gray-900 rounded-sm relative">
-                            <div className="w-4 h-1.5 bg-gray-900 rounded-xs absolute top-0.5 left-0.5"></div>
+                          <div className="w-5 h-2 lg:w-6 lg:h-3 border border-gray-900 rounded-sm relative">
+                            <div className="w-3 h-1 lg:w-4 lg:h-1.5 bg-gray-900 rounded-xs absolute top-0.5 left-0.5"></div>
                           </div>
-                          <div className="w-0.5 h-1.5 bg-gray-900 rounded-r-sm ml-0.5"></div>
+                          <div className="w-0.5 h-1 lg:h-1.5 bg-gray-900 rounded-r-sm ml-0.5"></div>
                         </div>
                       </div>
                     </div>
                     
                     {/* Email View */}
                     {currentFeature.content.isEmail ? (
-                      <div className="space-y-4 flex-1 min-h-0 overflow-hidden">
-                        <div className="border-b border-gray-200 pb-4">
-                          <div className="flex items-center space-x-3 mb-3">
-                            <Mail className="w-6 h-6 text-blue-600" />
-                            <span className="text-lg font-medium text-blue-600">BrainSync Weekly</span>
+                      <div className="space-y-3 lg:space-y-4 flex-1 min-h-0 overflow-hidden">
+                        <div className="border-b border-gray-200 pb-3 lg:pb-4">
+                          <div className="flex items-center space-x-2 lg:space-x-3 mb-2 lg:mb-3">
+                            <Mail className="w-4 h-4 lg:w-6 lg:h-6 text-blue-600" />
+                            <span className="text-sm lg:text-lg font-medium text-blue-600">BrainSync Weekly</span>
                           </div>
-                          <h4 className="font-bold text-gray-900 text-2xl">{currentFeature.content.subject}</h4>
+                          <h4 className="font-bold text-gray-900 text-lg lg:text-2xl">{currentFeature.content.subject}</h4>
                         </div>
-                        <p className="text-xl text-gray-700 leading-relaxed">{currentFeature.content.preview}</p>
-                        <div className="space-y-4 flex-1 overflow-y-auto min-h-0">
+                        <p className="text-base lg:text-xl text-gray-700 leading-relaxed">{currentFeature.content.preview}</p>
+                        <div className="space-y-3 lg:space-y-4 flex-1 overflow-y-auto min-h-0">
                           {currentFeature.content.highlights.map((highlight, index) => (
-                            <div key={index} className="text-lg text-gray-600 bg-gray-50 rounded-lg p-6 border border-gray-100">
+                            <div key={index} className="text-sm lg:text-lg text-gray-600 bg-gray-50 rounded-lg p-3 lg:p-6 border border-gray-100">
                               {highlight}
                             </div>
                           ))}
@@ -363,114 +387,114 @@ const CalendarHeroSection = () => {
                       /* REBUILT Calendar View with Better Layout */
                       <div className="flex flex-col h-full">
                         {/* Chat showing what user said */}
-                        <div className="border-b border-gray-200 pb-4 mb-4">
-                          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
-                            <div className="flex items-start space-x-3">
-                              <MessageCircle className="w-6 h-6 text-blue-600 mt-0.5 flex-shrink-0" />
-                              <p className="text-lg text-blue-800 font-medium italic">"{currentFeature.content.chatMessage}"</p>
+                        <div className="border-b border-gray-200 pb-3 lg:pb-4 mb-3 lg:mb-4">
+                          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 lg:p-4 border border-blue-200">
+                            <div className="flex items-start space-x-2 lg:space-x-3">
+                              <MessageCircle className="w-4 h-4 lg:w-6 lg:h-6 text-blue-600 mt-0.5 flex-shrink-0" />
+                              <p className="text-sm lg:text-lg text-blue-800 font-medium italic">"{currentFeature.content.chatMessage}"</p>
                             </div>
                           </div>
                         </div>
 
                         {/* Calendar Header */}
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center space-x-3">
-                            <Calendar className="w-6 h-6 text-indigo-600" />
-                            <span className="text-xl font-semibold text-indigo-600">Tuesday, March 12</span>
+                        <div className="flex items-center justify-between mb-3 lg:mb-4">
+                          <div className="flex items-center space-x-2 lg:space-x-3">
+                            <Calendar className="w-4 h-4 lg:w-6 lg:h-6 text-indigo-600" />
+                            <span className="text-sm lg:text-xl font-semibold text-indigo-600">Tuesday, March 12</span>
                           </div>
-                          <div className="flex items-center space-x-2">
-                            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                            <span className="text-lg text-green-600 font-medium">Building...</span>
+                          <div className="flex items-center space-x-1 lg:space-x-2">
+                            <div className="w-2 h-2 lg:w-3 lg:h-3 bg-green-500 rounded-full animate-pulse"></div>
+                            <span className="text-xs lg:text-lg text-green-600 font-medium">Building...</span>
                           </div>
                         </div>
 
                         {/* Improved Calendar Layout */}
-                        <div className="flex-1 bg-gradient-to-b from-gray-50 to-white rounded-xl border border-gray-200 p-4 overflow-hidden">
-                          <div className="space-y-3 h-full overflow-y-auto">
+                        <div className="flex-1 bg-gradient-to-b from-gray-50 to-white rounded-xl border border-gray-200 p-2 lg:p-4 overflow-hidden">
+                          <div className="space-y-2 lg:space-y-3 h-full overflow-y-auto">
                             
                             {/* Event 1: Morning Workout - Compact */}
-                            <div className="bg-gradient-to-r from-emerald-500 to-green-500 rounded-lg p-3 text-white shadow-md border-l-4 border-emerald-600">
+                            <div className="bg-gradient-to-r from-emerald-500 to-green-500 rounded-lg p-2 lg:p-3 text-white shadow-md border-l-4 border-emerald-600">
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center space-x-2">
-                                  <div className="bg-white/20 rounded-full p-1.5">
-                                    <Zap className="w-4 h-4" />
+                                  <div className="bg-white/20 rounded-full p-1 lg:p-1.5">
+                                    <Zap className="w-3 h-3 lg:w-4 lg:h-4" />
                                   </div>
                                   <div>
-                                    <div className="font-semibold text-base">9:00 AM</div>
-                                    <div className="text-emerald-100 text-sm">Morning Workout</div>
+                                    <div className="font-semibold text-sm lg:text-base">9:00 AM</div>
+                                    <div className="text-emerald-100 text-xs lg:text-sm">Morning Workout</div>
                                   </div>
                                 </div>
-                                <span className="text-emerald-100 text-sm font-medium">60m</span>
+                                <span className="text-emerald-100 text-xs lg:text-sm font-medium">60m</span>
                               </div>
                             </div>
 
                             {/* Event 2: Client Presentation - Taller */}
-                            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg p-4 text-white shadow-md border-l-4 border-blue-700">
-                              <div className="flex items-start justify-between mb-2">
+                            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg p-2 lg:p-4 text-white shadow-md border-l-4 border-blue-700">
+                              <div className="flex items-start justify-between mb-1 lg:mb-2">
                                 <div className="flex items-center space-x-2">
-                                  <div className="bg-white/20 rounded-full p-1.5">
-                                    <Target className="w-5 h-5" />
+                                  <div className="bg-white/20 rounded-full p-1 lg:p-1.5">
+                                    <Target className="w-3 h-3 lg:w-5 lg:h-5" />
                                   </div>
                                   <div>
-                                    <div className="font-bold text-lg">10:30 AM</div>
-                                    <div className="text-blue-100 text-base font-medium">Client Presentation</div>
-                                    <div className="text-blue-200 text-sm mt-1">Big opportunity - high energy needed</div>
+                                    <div className="font-bold text-sm lg:text-lg">10:30 AM</div>
+                                    <div className="text-blue-100 text-xs lg:text-base font-medium">Client Presentation</div>
+                                    <div className="text-blue-200 text-xs lg:text-sm mt-0.5 lg:mt-1">Big opportunity - high energy needed</div>
                                   </div>
                                 </div>
-                                <span className="text-blue-100 text-sm font-medium">90m</span>
+                                <span className="text-blue-100 text-xs lg:text-sm font-medium">90m</span>
                               </div>
                             </div>
 
                             {/* Mental Health Gap - Prominent Display */}
                             <div className="relative">
-                              <div className="bg-gradient-to-r from-green-50 via-emerald-50 to-green-50 border-2 border-dashed border-green-300 rounded-xl p-4 my-3">
+                              <div className="bg-gradient-to-r from-green-50 via-emerald-50 to-green-50 border-2 border-dashed border-green-300 rounded-xl p-2 lg:p-4 my-2 lg:my-3">
                                 <div className="text-center">
-                                  <div className="flex items-center justify-center space-x-2 mb-2">
-                                    <Heart className="w-5 h-5 text-green-600" />
-                                    <span className="text-base font-bold text-green-800">Mental Health Gap</span>
-                                    <Heart className="w-5 h-5 text-green-600" />
+                                  <div className="flex items-center justify-center space-x-1 lg:space-x-2 mb-1 lg:mb-2">
+                                    <Heart className="w-3 h-3 lg:w-5 lg:h-5 text-green-600" />
+                                    <span className="text-xs lg:text-base font-bold text-green-800">Mental Health Gap</span>
+                                    <Heart className="w-3 h-3 lg:w-5 lg:h-5 text-green-600" />
                                   </div>
-                                  <div className="text-sm text-green-700 font-medium">12:00 PM - 2:00 PM</div>
-                                  <div className="text-sm text-green-600 mt-1">🌿 Unscheduled time preserved for decompression</div>
+                                  <div className="text-xs lg:text-sm text-green-700 font-medium">12:00 PM - 2:00 PM</div>
+                                  <div className="text-xs lg:text-sm text-green-600 mt-0.5 lg:mt-1">🌿 Unscheduled time preserved for decompression</div>
                                 </div>
                                 
                                 {/* Visual spacer lines */}
-                                <div className="flex items-center justify-center space-x-2 mt-3">
+                                <div className="flex items-center justify-center space-x-2 mt-2 lg:mt-3">
                                   <div className="h-px bg-green-300 flex-1"></div>
-                                  <span className="text-green-500 text-base">✨</span>
+                                  <span className="text-green-500 text-sm lg:text-base">✨</span>
                                   <div className="h-px bg-green-300 flex-1"></div>
                                 </div>
                               </div>
                             </div>
 
                             {/* Event 3: Henry's School Pickup - Medium */}
-                            <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-3 text-white shadow-md border-l-4 border-purple-600">
+                            <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-2 lg:p-3 text-white shadow-md border-l-4 border-purple-600">
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center space-x-2">
-                                  <div className="bg-white/20 rounded-full p-1.5">
-                                    <Heart className="w-4 h-4" />
+                                  <div className="bg-white/20 rounded-full p-1 lg:p-1.5">
+                                    <Heart className="w-3 h-3 lg:w-4 lg:h-4" />
                                   </div>
                                   <div>
-                                    <div className="font-semibold text-base">2:00 PM</div>
-                                    <div className="text-purple-100 text-sm">Henry's School Pickup</div>
+                                    <div className="font-semibold text-sm lg:text-base">2:00 PM</div>
+                                    <div className="text-purple-100 text-xs lg:text-sm">Henry's School Pickup</div>
                                     <div className="text-purple-200 text-xs">Family time priority</div>
                                   </div>
                                 </div>
-                                <span className="text-purple-100 text-sm font-medium">30m</span>
+                                <span className="text-purple-100 text-xs lg:text-sm font-medium">30m</span>
                               </div>
                             </div>
 
                             {/* AI Commentary - Enhanced - Moved inside scrollable area */}
-                            <div className="bg-gradient-to-r from-yellow-50 to-amber-50 rounded-lg p-3 border border-yellow-200 mt-4">
+                            <div className="bg-gradient-to-r from-yellow-50 to-amber-50 rounded-lg p-2 lg:p-3 border border-yellow-200 mt-2 lg:mt-4">
                               <div className="flex items-start space-x-2">
-                                <Brain className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+                                <Brain className="w-4 h-4 lg:w-5 lg:h-5 text-amber-600 mt-0.5 flex-shrink-0" />
                                 <div className="flex-1 min-w-0">
-                                  <p className="text-base font-semibold text-amber-900">Smart Calendar Building</p>
-                                  <p className="text-sm text-amber-700 mt-1">✨ Preserving mental health gaps & respecting energy patterns</p>
-                                  <div className="flex flex-wrap gap-1 mt-2">
-                                    <span className="text-xs text-amber-600 font-medium bg-amber-100 px-2 py-1 rounded">🎯 Post-workout focus</span>
-                                    <span className="text-xs text-amber-600 font-medium bg-amber-100 px-2 py-1 rounded">🌿 Recovery time</span>
-                                    <span className="text-xs text-amber-600 font-medium bg-amber-100 px-2 py-1 rounded">❤️ Family first</span>
+                                  <p className="text-xs lg:text-base font-semibold text-amber-900">Smart Calendar Building</p>
+                                  <p className="text-xs lg:text-sm text-amber-700 mt-0.5 lg:mt-1">✨ Preserving mental health gaps & respecting energy patterns</p>
+                                  <div className="flex flex-wrap gap-1 mt-1 lg:mt-2">
+                                    <span className="text-xs text-amber-600 font-medium bg-amber-100 px-1.5 py-0.5 lg:px-2 lg:py-1 rounded">🎯 Post-workout focus</span>
+                                    <span className="text-xs text-amber-600 font-medium bg-amber-100 px-1.5 py-0.5 lg:px-2 lg:py-1 rounded">🌿 Recovery time</span>
+                                    <span className="text-xs text-amber-600 font-medium bg-amber-100 px-1.5 py-0.5 lg:px-2 lg:py-1 rounded">❤️ Family first</span>
                                   </div>
                                 </div>
                               </div>
@@ -483,34 +507,34 @@ const CalendarHeroSection = () => {
                       /* Calendar After Optimization */
                       <div className="flex flex-col h-full">
                         {/* Success Header */}
-                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-4 border border-green-200 mb-3">
+                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 lg:p-4 border border-green-200 mb-2 lg:mb-3">
                           <div className="flex items-center space-x-2">
-                            <span className="text-green-600 text-xl">✅</span>
+                            <span className="text-green-600 text-lg lg:text-xl">✅</span>
                             <div>
-                              <p className="text-base font-medium text-green-900">Calendar Optimized!</p>
-                              <p className="text-base text-green-700">Your schedule is ADHD-brain friendly</p>
+                              <p className="text-sm lg:text-base font-medium text-green-900">Calendar Optimized!</p>
+                              <p className="text-sm lg:text-base text-green-700">Your schedule is ADHD-brain friendly</p>
                             </div>
                           </div>
                         </div>
 
                         {/* Optimized Calendar */}
-                        <div className="border-b border-gray-200 pb-2 mb-3">
+                        <div className="border-b border-gray-200 pb-2 mb-2 lg:mb-3">
                           <div className="flex items-center space-x-2">
-                            <Calendar className="w-5 h-5 text-green-600" />
-                            <span className="text-lg font-medium text-green-600">Tuesday, March 12 - Optimized</span>
+                            <Calendar className="w-4 h-4 lg:w-5 lg:h-5 text-green-600" />
+                            <span className="text-sm lg:text-lg font-medium text-green-600">Tuesday, March 12 - Optimized</span>
                           </div>
                         </div>
 
-                        <div className="flex-1 space-y-3 overflow-y-auto min-h-0 bg-gradient-to-b from-gray-50 to-white rounded-xl border border-gray-200 p-3">
+                        <div className="flex-1 space-y-2 lg:space-y-3 overflow-y-auto min-h-0 bg-gradient-to-b from-gray-50 to-white rounded-xl border border-gray-200 p-2 lg:p-3">
                           {currentFeature.content.events.map((event, index) => (
                             <div key={index}>
-                              <div className="p-3 rounded-lg bg-blue-500 text-white text-base shadow-sm">
+                              <div className="p-2 lg:p-3 rounded-lg bg-blue-500 text-white text-sm lg:text-base shadow-sm">
                                 <div className="flex justify-between items-center">
                                   <div>
-                                    <div className="font-medium text-lg">{event.time}</div>
-                                    <div className="opacity-90 text-base">{event.title}</div>
+                                    <div className="font-medium text-sm lg:text-lg">{event.time}</div>
+                                    <div className="opacity-90 text-xs lg:text-base">{event.title}</div>
                                   </div>
-                                  <div className="text-base opacity-75">{event.duration}min</div>
+                                  <div className="text-xs lg:text-base opacity-75">{event.duration}min</div>
                                 </div>
                               </div>
                               
@@ -518,10 +542,10 @@ const CalendarHeroSection = () => {
                               {currentFeature.content.mentalHealthGap && 
                                currentFeature.content.mentalHealthGap.after === event.time && (
                                 <div className="relative">
-                                  <div className="h-6 flex items-center justify-end pr-2">
+                                  <div className="h-4 lg:h-6 flex items-center justify-end pr-1 lg:pr-2">
                                     <div className="flex items-center space-x-1">
-                                      <span className="text-base text-gray-500">mental health gap (nothing scheduled on purpose)!</span>
-                                      <span className="text-gray-400 text-lg">↑</span>
+                                      <span className="text-xs lg:text-base text-gray-500">mental health gap (nothing scheduled on purpose)!</span>
+                                      <span className="text-gray-400 text-sm lg:text-lg">↑</span>
                                     </div>
                                   </div>
                                 </div>
@@ -530,29 +554,29 @@ const CalendarHeroSection = () => {
                           ))}
 
                           {/* Smart Calendar Building - Integrated into scrollable area */}
-                          <div className="bg-gradient-to-r from-yellow-50 to-amber-50 rounded-lg p-3 border border-yellow-200 mt-4">
+                          <div className="bg-gradient-to-r from-yellow-50 to-amber-50 rounded-lg p-2 lg:p-3 border border-yellow-200 mt-2 lg:mt-4">
                             <div className="flex items-start space-x-2">
-                              <Brain className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+                              <Brain className="w-4 h-4 lg:w-5 lg:h-5 text-amber-600 mt-0.5 flex-shrink-0" />
                               <div className="flex-1 min-w-0">
-                                <p className="text-base font-semibold text-amber-900">Smart Calendar Building</p>
-                                <p className="text-sm text-amber-700 mt-1">✨ Preserving mental health gaps & respecting energy patterns</p>
-                                <div className="flex flex-wrap gap-1 mt-2">
-                                  <span className="text-xs text-amber-600 font-medium bg-amber-100 px-2 py-1 rounded">🎯 Post-workout focus</span>
-                                  <span className="text-xs text-amber-600 font-medium bg-amber-100 px-2 py-1 rounded">🌿 Recovery time</span>
-                                  <span className="text-xs text-amber-600 font-medium bg-amber-100 px-2 py-1 rounded">❤️ Family first</span>
+                                <p className="text-xs lg:text-base font-semibold text-amber-900">Smart Calendar Building</p>
+                                <p className="text-xs lg:text-sm text-amber-700 mt-0.5 lg:mt-1">✨ Preserving mental health gaps & respecting energy patterns</p>
+                                <div className="flex flex-wrap gap-1 mt-1 lg:mt-2">
+                                  <span className="text-xs text-amber-600 font-medium bg-amber-100 px-1.5 py-0.5 lg:px-2 lg:py-1 rounded">🎯 Post-workout focus</span>
+                                  <span className="text-xs text-amber-600 font-medium bg-amber-100 px-1.5 py-0.5 lg:px-2 lg:py-1 rounded">🌿 Recovery time</span>
+                                  <span className="text-xs text-amber-600 font-medium bg-amber-100 px-1.5 py-0.5 lg:px-2 lg:py-1 rounded">❤️ Family first</span>
                                 </div>
                               </div>
                             </div>
                           </div>
 
                           {/* Optimizations */}
-                          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
-                            <p className="text-base font-medium text-blue-900 mb-2">✨ Smart Optimizations:</p>
+                          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-2 lg:p-3 border border-blue-200">
+                            <p className="text-xs lg:text-base font-medium text-blue-900 mb-1 lg:mb-2">✨ Smart Optimizations:</p>
                             <div className="space-y-1">
                               {currentFeature.content.rescheduledInfo.optimizations.map((optimization, index) => (
                                 <div key={index} className="flex items-center space-x-2">
-                                  <span className="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
-                                  <span className="text-sm text-blue-800">{optimization}</span>
+                                  <span className="w-1 h-1 lg:w-1.5 lg:h-1.5 bg-blue-600 rounded-full"></span>
+                                  <span className="text-xs lg:text-sm text-blue-800">{optimization}</span>
                                 </div>
                               ))}
                             </div>
@@ -564,8 +588,8 @@ const CalendarHeroSection = () => {
                       <div className="flex flex-col h-full">
                         {/* Time Header - Only show for non-ADHD Brain Trap Support */}
                         {currentFeature.content.time && currentFeature.title !== "ADHD Brain Trap Support" && (
-                          <div className="text-center mb-4 mt-8">
-                            <span className="text-xl text-gray-500 bg-gray-100 px-5 py-3 rounded-full font-medium">
+                          <div className="text-center mb-3 lg:mb-4 mt-4 lg:mt-8">
+                            <span className="text-sm lg:text-xl text-gray-500 bg-gray-100 px-3 py-2 lg:px-5 lg:py-3 rounded-full font-medium">
                               {currentFeature.content.time}
                             </span>
                           </div>
@@ -573,21 +597,21 @@ const CalendarHeroSection = () => {
 
                         {/* Add spacing for ADHD Brain Trap Support to compensate for missing time header */}
                         {currentFeature.title === "ADHD Brain Trap Support" && (
-                          <div className="mt-8"></div>
+                          <div className="mt-4 lg:mt-8"></div>
                         )}
                         
                         {/* Messages */}
-                        <div className="flex-1 space-y-6 overflow-y-auto px-2 min-h-0">
+                        <div className="flex-1 space-y-3 lg:space-y-6 overflow-y-auto px-1 lg:px-2 min-h-0">
                           {currentFeature.content.messages && currentFeature.content.messages.map((message, index) => (
                             <div key={index}>
                               {message.type === 'ai' && (
-                                <div className="flex items-start space-x-5">
-                                  <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <Brain className="w-7 h-7 text-white" />
+                                <div className="flex items-start space-x-3 lg:space-x-5">
+                                  <div className="w-10 h-10 lg:w-14 lg:h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <Brain className="w-5 h-5 lg:w-7 lg:h-7 text-white" />
                                   </div>
                                   <div className="flex-1">
-                                    <div className="bg-gray-100 rounded-lg rounded-tl-sm p-6">
-                                      <p className="text-xl text-gray-800 leading-relaxed">{message.text}</p>
+                                    <div className="bg-gray-100 rounded-lg rounded-tl-sm p-3 lg:p-6">
+                                      <p className="text-sm lg:text-xl text-gray-800 leading-relaxed">{message.text}</p>
                                     </div>
                                   </div>
                                 </div>
@@ -595,23 +619,23 @@ const CalendarHeroSection = () => {
                               
                               {message.type === 'user' && (
                                 <div className="flex justify-end">
-                                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg rounded-tr-sm p-6 max-w-xl">
-                                    <p className="text-xl text-white leading-relaxed">{message.text}</p>
+                                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg rounded-tr-sm p-3 lg:p-6 max-w-xs lg:max-w-xl">
+                                    <p className="text-sm lg:text-xl text-white leading-relaxed">{message.text}</p>
                                   </div>
                                 </div>
                               )}
                               
                               {message.type === 'options' && 'choices' in message && message.choices && (
-                                <div className="space-y-3">
+                                <div className="space-y-2 lg:space-y-3">
                                   {message.choices.map((choice: { emoji: string; text: string; desc: string }, choiceIndex: number) => (
                                     <button 
                                       key={choiceIndex}
-                                      className="w-full bg-blue-50 hover:bg-blue-100 rounded-lg p-6 text-left transition-colors border border-blue-200"
+                                      className="w-full bg-blue-50 hover:bg-blue-100 rounded-lg p-3 lg:p-6 text-left transition-colors border border-blue-200"
                                     >
-                                      <div className="text-xl font-medium text-blue-800 mb-2">
+                                      <div className="text-sm lg:text-xl font-medium text-blue-800 mb-1 lg:mb-2">
                                         {choice.emoji} {choice.text}
                                       </div>
-                                      <div className="text-lg text-blue-600">{choice.desc}</div>
+                                      <div className="text-xs lg:text-lg text-blue-600">{choice.desc}</div>
                                     </button>
                                   ))}
                                 </div>
@@ -621,19 +645,19 @@ const CalendarHeroSection = () => {
                         </div>
 
                         {/* Chat Input - Fixed Position */}
-                        <div className="border-t border-gray-200 pt-4 mt-4 flex-shrink-0">
-                          <div className="flex items-center space-x-3 bg-gray-50 rounded-full p-4">
+                        <div className="border-t border-gray-200 pt-3 lg:pt-4 mt-3 lg:mt-4 flex-shrink-0">
+                          <div className="flex items-center space-x-2 lg:space-x-3 bg-gray-50 rounded-full p-2 lg:p-4">
                             <input 
                               type="text" 
                               placeholder="Type your message..." 
-                              className="flex-1 bg-transparent text-base placeholder-gray-500 outline-none px-3"
+                              className="flex-1 bg-transparent text-sm lg:text-base placeholder-gray-500 outline-none px-2 lg:px-3"
                               disabled
                             />
-                            <button className="w-12 h-12 bg-purple-500 hover:bg-purple-600 rounded-full flex items-center justify-center transition-colors">
-                              <Mic className="w-6 h-6 text-white" />
+                            <button className="w-8 h-8 lg:w-12 lg:h-12 bg-purple-500 hover:bg-purple-600 rounded-full flex items-center justify-center transition-colors">
+                              <Mic className="w-4 h-4 lg:w-6 lg:h-6 text-white" />
                             </button>
-                            <button className="w-12 h-12 bg-indigo-500 hover:bg-indigo-600 rounded-full flex items-center justify-center transition-colors">
-                              <Send className="w-6 h-6 text-white" />
+                            <button className="w-8 h-8 lg:w-12 lg:h-12 bg-indigo-500 hover:bg-indigo-600 rounded-full flex items-center justify-center transition-colors">
+                              <Send className="w-4 h-4 lg:w-6 lg:h-6 text-white" />
                             </button>
                           </div>
                         </div>
@@ -644,7 +668,7 @@ const CalendarHeroSection = () => {
 
                 {/* Click to Explore */}
                 <div className="text-center">
-                  <p className="text-lg text-gray-500">
+                  <p className="text-sm lg:text-lg text-gray-500">
                     Click arrows or dots to explore features →
                   </p>
                 </div>
@@ -655,19 +679,19 @@ const CalendarHeroSection = () => {
 
         {/* Full-Width Journey Visual */}
         <div className="relative">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8 lg:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 lg:mb-4">
               Your BrainSync
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"> Journey</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               Follow the path from Sunday overwhelm to ADHD mastery. Every step builds on the last, 
               creating a personalized system that actually works with your brain.
             </p>
           </div>
 
           {/* Journey Map */}
-          <div className="relative bg-white rounded-3xl p-8 lg:p-12 shadow-2xl border border-purple-100">
+          <div className="relative bg-white rounded-3xl p-4 sm:p-6 lg:p-8 xl:p-12 shadow-2xl border border-purple-100">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5">
               <svg className="w-full h-full" viewBox="0 0 100 100" fill="none">
@@ -700,75 +724,75 @@ const CalendarHeroSection = () => {
             </svg>
 
             {/* Waypoints */}
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-6 gap-8 lg:gap-4">
+            <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 lg:gap-4">
               
               {/* Waypoint 1: Sunday Revolution */}
               <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white mb-4 transform hover:scale-110 transition-transform">
-                  <Sparkles className="w-10 h-10 text-white" />
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white mb-3 lg:mb-4 transform hover:scale-110 transition-transform">
+                  <Sparkles className="w-7 h-7 lg:w-10 lg:h-10 text-white" />
                 </div>
-                <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-4 border border-red-200">
-                  <h4 className="font-bold text-red-900 text-sm mb-1">Sunday Revolution</h4>
+                <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-3 lg:p-4 border border-red-200">
+                  <h4 className="font-bold text-red-900 text-xs lg:text-sm mb-1">Sunday Revolution</h4>
                   <p className="text-xs text-red-700">From overwhelming to empowering planning</p>
                 </div>
               </div>
 
               {/* Waypoint 2: AI-Guided Setup */}
               <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white mb-4 transform hover:scale-110 transition-transform">
-                  <MessageCircle className="w-10 h-10 text-white" />
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white mb-3 lg:mb-4 transform hover:scale-110 transition-transform">
+                  <MessageCircle className="w-7 h-7 lg:w-10 lg:h-10 text-white" />
                 </div>
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200">
-                  <h4 className="font-bold text-blue-900 text-sm mb-1">AI-Guided Setup</h4>
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-3 lg:p-4 border border-blue-200">
+                  <h4 className="font-bold text-blue-900 text-xs lg:text-sm mb-1">AI-Guided Setup</h4>
                   <p className="text-xs text-blue-700">7-phase conversation learns your patterns</p>
                 </div>
               </div>
 
               {/* Waypoint 3: Smart Calendar */}
               <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white mb-4 transform hover:scale-110 transition-transform">
-                  <Brain className="w-10 h-10 text-white" />
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white mb-3 lg:mb-4 transform hover:scale-110 transition-transform">
+                  <Brain className="w-7 h-7 lg:w-10 lg:h-10 text-white" />
                 </div>
-                <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-4 border border-purple-200">
-                  <h4 className="font-bold text-purple-900 text-sm mb-1">Smart Calendar</h4>
+                <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-3 lg:p-4 border border-purple-200">
+                  <h4 className="font-bold text-purple-900 text-xs lg:text-sm mb-1">Smart Calendar</h4>
                   <p className="text-xs text-purple-700">Learns and evolves with your behavior</p>
                 </div>
               </div>
 
               {/* Waypoint 4: Conscious Choices */}
               <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white mb-4 transform hover:scale-110 transition-transform">
-                  <Heart className="w-10 h-10 text-white" />
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white mb-3 lg:mb-4 transform hover:scale-110 transition-transform">
+                  <Heart className="w-7 h-7 lg:w-10 lg:h-10 text-white" />
                 </div>
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
-                  <h4 className="font-bold text-green-900 text-sm mb-1">Conscious Choices</h4>
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-3 lg:p-4 border border-green-200">
+                  <h4 className="font-bold text-green-900 text-xs lg:text-sm mb-1">Conscious Choices</h4>
                   <p className="text-xs text-green-700">Every decision celebrated and honored</p>
                 </div>
               </div>
 
               {/* Waypoint 5: Weekly Support */}
               <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white mb-4 transform hover:scale-110 transition-transform">
-                  <Zap className="w-10 h-10 text-white" />
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white mb-3 lg:mb-4 transform hover:scale-110 transition-transform">
+                  <Zap className="w-7 h-7 lg:w-10 lg:h-10 text-white" />
                 </div>
-                <div className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 border border-pink-200">
-                  <h4 className="font-bold text-pink-900 text-sm mb-1">Weekly Support</h4>
+                <div className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-3 lg:p-4 border border-pink-200">
+                  <h4 className="font-bold text-pink-900 text-xs lg:text-sm mb-1">Weekly Support</h4>
                   <p className="text-xs text-pink-700">Gentle nudges and choice awareness</p>
                 </div>
               </div>
 
               {/* Waypoint 6: ADHD Mastery */}
-              <div className="flex flex-col items-center text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center shadow-2xl border-4 border-white mb-4 transform hover:scale-110 transition-transform relative">
-                  <Trophy className="w-12 h-12 text-white" />
+              <div className="flex flex-col items-center text-center col-span-2 sm:col-span-1">
+                <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center shadow-2xl border-4 border-white mb-3 lg:mb-4 transform hover:scale-110 transition-transform relative">
+                  <Trophy className="w-8 h-8 lg:w-12 lg:h-12 text-white" />
                   {/* Success sparkles */}
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full animate-pulse flex items-center justify-center">
-                    <Sparkles className="w-3 h-3 text-white" />
+                  <div className="absolute -top-2 -right-2 w-5 h-5 lg:w-6 lg:h-6 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full animate-pulse flex items-center justify-center">
+                    <Sparkles className="w-2.5 h-2.5 lg:w-3 lg:h-3 text-white" />
                   </div>
-                  <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                  <div className="absolute -bottom-2 -left-2 w-3 h-3 lg:w-4 lg:h-4 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
                 </div>
-                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 border border-yellow-200">
-                  <h4 className="font-bold text-yellow-900 text-sm mb-1">ADHD Mastery</h4>
+                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-3 lg:p-4 border border-yellow-200">
+                  <h4 className="font-bold text-yellow-900 text-xs lg:text-sm mb-1">ADHD Mastery</h4>
                   <p className="text-xs text-yellow-700">Calendar system that adapts to your brain</p>
                 </div>
               </div>
@@ -776,26 +800,26 @@ const CalendarHeroSection = () => {
             </div>
 
             {/* Journey Stats */}
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-200">
-                <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">Week 1</div>
+            <div className="mt-8 lg:mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+              <div className="text-center bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 lg:p-6 border border-purple-200">
+                <div className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">Week 1</div>
                 <p className="text-sm text-purple-700">Sunday planning transformation begins</p>
               </div>
-              <div className="text-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
-                <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">Month 1-2</div>
+              <div className="text-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 lg:p-6 border border-blue-200">
+                <div className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">Month 1-2</div>
                 <p className="text-sm text-blue-700">AI learns your patterns and preferences</p>
               </div>
-              <div className="text-center bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-6 border border-yellow-200">
-                <div className="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent mb-2">Month 3+</div>
+              <div className="text-center bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 lg:p-6 border border-yellow-200">
+                <div className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent mb-2">Month 3+</div>
                 <p className="text-sm text-yellow-700">Personalized ADHD success system emerges</p>
               </div>
             </div>
 
             {/* CTA */}
-            <div className="mt-12 text-center">
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-5 rounded-xl font-bold text-lg hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-xl flex items-center space-x-3 mx-auto">
+            <div className="mt-8 lg:mt-12 text-center">
+              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 lg:px-10 lg:py-5 rounded-xl font-bold text-base lg:text-lg hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-xl flex items-center space-x-3 mx-auto">
                 <span>Begin Your Journey</span>
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
               </button>
             </div>
           </div>
