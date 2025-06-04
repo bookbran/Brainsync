@@ -1,8 +1,8 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "build",
-  "devCommand": "npm start",
-  "installCommand": "npm install",
+  "buildCommand": "cd brainsync-landing && npm run build",
+  "outputDirectory": "brainsync-landing/build",
+  "devCommand": "cd brainsync-landing && npm start",
+  "installCommand": "cd brainsync-landing && npm install",
   "framework": "create-react-app",
   "rewrites": [
     {
