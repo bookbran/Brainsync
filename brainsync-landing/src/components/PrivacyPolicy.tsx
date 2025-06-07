@@ -88,7 +88,7 @@ const PrivacyPolicy = () => {
             <p className="text-gray-700">
               For questions about this Privacy Policy or to exercise your rights, contact us at:
               <br />
-              <strong>Email:</strong> privacy@brainsyncpro.com
+              <strong>Email:</strong> dan@aportlandcareer.com
               <br />
               <strong>Privacy Officer:</strong> BrainSync Pro Team
             </p>

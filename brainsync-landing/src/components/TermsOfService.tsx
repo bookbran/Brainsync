@@ -73,7 +73,7 @@ const TermsOfService = () => {
             <p className="text-gray-700">
               For questions about these Terms of Service, contact us at:
               <br />
-              <strong>Email:</strong> support@brainsyncpro.com
+              <strong>Email:</strong> dan@aportlandcareer.com
               <br />
               <strong>SMS Support:</strong> Reply HELP to any message
             </p>
