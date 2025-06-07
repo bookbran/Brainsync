@@ -274,6 +274,14 @@ class Database {
       return { status: 'unhealthy', error: error.message, timestamp: new Date().toISOString() };
     }
   }
+
+  /**
+   * Look up a user by phone number (stub for now)
+   */
+  static async getUserByPhone(phone) {
+    // TODO: Implement real lookup logic
+    return null;
+  }
 }
 
 module.exports = { Database, supabase }; 

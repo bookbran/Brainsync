@@ -1,6 +1,8 @@
 const express = require('express');
 const { Database } = require('../utils/database');
 const logger = require('../utils/logger');
+const { sendSMS, formatResponse } = require('../services/twilio');
+const { processUserMessage } = require('../services/messageProcessor');
 
 const router = express.Router();
 
@@ -9,15 +11,55 @@ const router = express.Router();
  */
 router.post('/sms', async (req, res) => {
   try {
-    // TODO: Implement Twilio SMS webhook handling
-    // Parse incoming SMS and match to choice prompts
+    const { Body, From } = req.body;
     
-    logger.info('SMS webhook received:', req.body);
+    logger.info('SMS webhook received:', {
+      from: From,
+      body: Body,
+      timestamp: new Date().toISOString()
+    });
+
+    // Look up user by phone number
+    const user = await Database.getUserByPhone(From);
     
-    res.status(200).send('<Response></Response>'); // TwiML response
+    if (!user) {
+      // New user - send welcome message
+      const welcomeMessage = formatResponse(
+        "Welcome to BrainSync! 🎉 I'm your ADHD-friendly calendar assistant.",
+        {
+          sections: [
+            { emoji: "💡", text: "I help you build your calendar through natural conversation" },
+            { emoji: "🛡️", text: "I protect your mental health gaps and energy patterns" },
+            { emoji: "🎯", text: "Let's start with what's on your mind right now" }
+          ]
+        }
+      );
+      
+      await sendSMS(From, welcomeMessage);
+    } else {
+      // Existing user - process their message
+      const response = await processUserMessage(user.id, Body);
+      await sendSMS(From, response);
+    }
+    
+    // Send TwiML response
+    res.status(200).send('<Response></Response>');
     
   } catch (error) {
     logger.error('SMS webhook error:', error);
+    
+    // Send friendly error message to user
+    const errorMessage = formatResponse(
+      "Oops! Something went wrong on my end.",
+      { error: true }
+    );
+    
+    try {
+      await sendSMS(req.body.From, errorMessage);
+    } catch (sendError) {
+      logger.error('Failed to send error message:', sendError);
+    }
+    
     res.status(500).send('<Response><Message>Error processing message</Message></Response>');
   }
 });

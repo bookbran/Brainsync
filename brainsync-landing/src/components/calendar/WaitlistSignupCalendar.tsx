@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 const WaitlistSignupCalendar = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [smsConsent, setSmsConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -15,12 +17,14 @@ const WaitlistSignupCalendar = () => {
     try {
       // For now, just simulate success
       // In production, this would integrate with the backend
-      setTimeout(() => {
-        setSubmitted(true);
-        setEmail('');
-        setName('');
-        setIsSubmitting(false);
-      }, 1000);
+              setTimeout(() => {
+          setSubmitted(true);
+          setEmail('');
+          setName('');
+          setPhone('');
+          setSmsConsent(false);
+          setIsSubmitting(false);
+        }, 1000);
     } catch (err) {
       setError('Something went wrong. Please try again!');
       setIsSubmitting(false);
@@ -84,7 +88,51 @@ const WaitlistSignupCalendar = () => {
               required
               className="w-full px-4 py-3 border-2 border-white border-opacity-30 rounded-lg focus:border-white focus:outline-none transition-colors text-lg bg-white bg-opacity-90 text-gray-800 placeholder-gray-500"
             />
+            <input
+              type="tel"
+              placeholder="Phone number for SMS reminders (optional)"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="w-full px-4 py-3 border-2 border-white border-opacity-30 rounded-lg focus:border-white focus:outline-none transition-colors text-lg bg-white bg-opacity-90 text-gray-800 placeholder-gray-500"
+            />
           </div>
+
+          {/* SMS Consent Section */}
+          {phone && (
+            <div className="mb-6 bg-white bg-opacity-10 rounded-lg p-4 text-left">
+              <label className="flex items-start space-x-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={smsConsent}
+                  onChange={(e) => setSmsConsent(e.target.checked)}
+                  className="mt-1 w-5 h-5 text-blue-600 bg-white rounded border-gray-300 focus:ring-blue-500"
+                />
+                <div className="text-sm text-white">
+                  <p className="font-semibold mb-2">📱 SMS Consent & Terms</p>
+                  <p className="mb-2">
+                    By checking this box, I consent to receive automated text messages from BrainSync Pro, including:
+                  </p>
+                  <ul className="list-disc list-inside space-y-1 text-xs opacity-90 mb-2">
+                    <li>Calendar reminders and gentle nudges</li>
+                    <li>ADHD-friendly scheduling assistance</li>
+                    <li>Weekly planning support messages</li>
+                    <li>Occasional product updates</li>
+                  </ul>
+                  <p className="text-xs opacity-75">
+                    Message frequency varies. Standard message & data rates may apply. 
+                    Reply STOP to opt out anytime. Reply HELP for help. 
+                    <br />
+                    <a href="/privacy" className="underline hover:text-blue-200" target="_blank">
+                      View Privacy Policy
+                    </a> | 
+                    <a href="/terms" className="underline hover:text-blue-200 ml-1" target="_blank">
+                      View Terms
+                    </a>
+                  </p>
+                </div>
+              </label>
+            </div>
+          )}
 
           {error && (
             <div className="mb-4 text-red-200 bg-red-500 bg-opacity-20 p-3 rounded-lg border border-red-300">

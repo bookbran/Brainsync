@@ -4,40 +4,40 @@ import { Brain, Sparkles } from 'lucide-react';
 const TechnicalAdvantagesCalendar = () => {
   const advantages = [
     {
-      emoji: "🚀",
-      title: "Calendar-Native AI",
-      description: "Built specifically for ADHD-friendly time management",
-      details: "Understands energy patterns, buffer needs, and transition challenges"
+      emoji: "🧠",
+      title: "Deep Pattern Memory",
+      description: "Remembers your ADHD patterns better than you do",
+      details: "Builds a foundation understanding from your first conversation, evolves quarterly as you grow"
     },
     {
-      emoji: "🔧",
-      title: "Cross-Platform Sync",
-      description: "Works seamlessly with Google, Outlook, Apple Calendar",
-      details: "Real-time updates, no manual entry, zero friction"
+      emoji: "🏆",
+      title: "Success Intelligence",
+      description: "References your past wins when you need encouragement",
+      details: "\"Remember that presentation 3 months ago? You used your post-workout focus strategy and crushed it!\""
     },
     {
-      emoji: "💰",
-      title: "ADHD-Optimized UX",
-      description: "Every interface designed for executive function challenges",
-      details: "Clear choices, gentle prompts, no overwhelming notifications"
+      emoji: "💙",
+      title: "Conversations That Remember",
+      description: "Talks to you like someone who's been rooting for you all along",
+      details: "6 months later, still knows Henry is your priority and you prefer morning deep work"
     },
     {
       emoji: "⚡",
-      title: "Real-Time Intelligence",
-      description: "Smart suggestions that respect your current context",
-      details: "Knows when you're in flow, when you need breaks, when to adapt"
+      title: "Energy-First Scheduling",
+      description: "Honors your ADHD brain's natural rhythms",
+      details: "Post-workout focus time, afternoon crash accommodation, hyperfocus protection"
     },
     {
       emoji: "🛡️",
-      title: "Privacy by Design",
-      description: "Calendar data stays secure, insights stay local",
-      details: "No behavioral tracking, no location monitoring, full transparency"
+      title: "Mental Health Gaps",
+      description: "Automatically preserves 20% buffer time for breathing room",
+      details: "Never schedules over your decompression time, adapts when life happens"
     },
     {
-      emoji: "🌍",
-      title: "Evolving Platform",
-      description: "Regular updates based on ADHD community needs",
-      details: "Built by people who understand the Sunday planning anxiety"
+      emoji: "🌱",
+      title: "Foundation Evolution",
+      description: "Grows with you through quarterly foundation refreshes",
+      details: "\"What's shifted since we first talked? What feels different now?\""
     }
   ];
 
@@ -193,19 +193,19 @@ const TechnicalAdvantagesCalendar = () => {
                 <ul className="space-y-3 text-gray-200">
                   <li className="flex items-start space-x-3">
                     <span className="text-green-300 mt-1">•</span>
-                    <span className="font-medium">Celebrates schedule changes as conscious choices</span>
+                    <span className="font-medium">Remembers your wins and reflects them back when you need encouragement</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <span className="text-green-300 mt-1">•</span>
-                    <span className="font-medium">Protects 20% buffer time automatically</span>
+                    <span className="font-medium">Builds a foundation understanding that evolves as you grow</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <span className="text-green-300 mt-1">•</span>
-                    <span className="font-medium">Adapts to energy patterns and flow states</span>
+                    <span className="font-medium">Conversations feel personal months later, like talking to an old friend</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <span className="text-green-300 mt-1">•</span>
-                    <span className="font-medium">Sunday planning that actually reduces anxiety</span>
+                    <span className="font-medium">Protects mental health gaps and celebrates conscious choices</span>
                   </li>
                 </ul>
               </div>
@@ -215,19 +215,19 @@ const TechnicalAdvantagesCalendar = () => {
                 <ul className="space-y-3 text-gray-200">
                   <li className="flex items-start space-x-3">
                     <span className="text-blue-300 mt-1">•</span>
-                    <span className="font-medium">Works with your existing calendar apps</span>
+                    <span className="font-medium">Knows your energy patterns better than you remember them</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <span className="text-blue-300 mt-1">•</span>
-                    <span className="font-medium">Weather-aware scheduling suggestions</span>
+                    <span className="font-medium">References specific wins: "Remember that client presentation?"</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <span className="text-blue-300 mt-1">•</span>
-                    <span className="font-medium">Gentle nudges via text - no app switching</span>
+                    <span className="font-medium">Quarterly check-ins that honor how you've grown</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <span className="text-blue-300 mt-1">•</span>
-                    <span className="font-medium">Family-friendly with kid-time protection</span>
+                    <span className="font-medium">Works with Google Calendar - no app switching needed</span>
                   </li>
                 </ul>
               </div>
@@ -283,10 +283,10 @@ const TechnicalAdvantagesCalendar = () => {
               
               <div className="text-center">
                 <div className="text-3xl mb-3">🧠</div>
-                <h4 className="font-bold text-purple-300 mb-2">ADHD-Aware AI</h4>
+                <h4 className="font-bold text-purple-300 mb-2">Foundation + Memory AI</h4>
                 <p className="text-gray-300 text-sm">
-                  Machine learning trained specifically on ADHD time management patterns. 
-                  Understands executive function, energy cycles, and transition needs.
+                  Creates deep foundation documents, tracks your success timeline, and evolves quarterly. 
+                  Conversations months later feel like talking to someone who's been rooting for you all along.
                 </p>
               </div>
             </div>

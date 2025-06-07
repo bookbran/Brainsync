@@ -3,7 +3,6 @@ import { Calendar, Clock, Target, Heart, Zap, Smile, Brain, MessageCircle, Spark
 
 const CalendarHeroSection = () => {
   const [activePreview, setActivePreview] = useState(0);
-  const [showNewMessaging, setShowNewMessaging] = useState(true);
 
   const previewFeatures = [
     {
@@ -139,27 +138,8 @@ const CalendarHeroSection = () => {
 
   const currentFeature = previewFeatures[activePreview];
 
-  // Messaging content
-  const oldMessaging = {
-    badge: "Calendar + AI Nudges for ADHD",
-    headline: "Plan Your Week,",
-    headlineHighlight: " Actually Follow It",
-    subheadline: "We help people with ADHD populate a calendar that gets smarter over time, make better conscious choices throughout the week, and celebrate every decision you make (yes, even the \"creative\" ones 😉). Transform your Sunday planning from overwhelming to empowering.",
-    realityCheck: {
-      title: "The ADHD Reality Check:",
-      content: "Making the perfect schedule is easy. Following it? That's where we shine. Our AI celebrates your wins, adapts when life happens, and never judges your \"creative interpretations\" of the plan."
-    },
-    features: [
-      { icon: Clock, title: "Sunday Planning", desc: "That actually makes sense" },
-      { icon: Zap, title: "Smart Nudges", desc: "Text magic all week" },
-      { icon: Heart, title: "Choice Celebration", desc: "Every decision honored" },
-      { icon: Target, title: "No Judgment Zone", desc: "Plans evolve, that's fine" }
-    ],
-    cta1: "Start Your Sunday Revolution",
-    cta2: "See the Magic in Action"
-  };
-
-  const newMessaging = {
+  // Messaging content - ADHD-focused approach
+  const messaging = {
     badge: "The Calendar Revolution for ADHD Brains",
     headline: "What If Your Calendar",
     headlineHighlight: " Actually Understood ADHD?",
@@ -178,34 +158,8 @@ const CalendarHeroSection = () => {
     cta2: "See How It Gets You"
   };
 
-  const messaging = showNewMessaging ? newMessaging : oldMessaging;
-
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-adhd-light via-white to-blue-50 pt-20 pb-24">
-      {/* Messaging Toggle - Fixed position in top-left */}
-      <div className="fixed top-4 left-4 z-50 bg-white rounded-lg shadow-lg border border-gray-200 p-2 flex space-x-1 hidden sm:flex">
-        <button
-          onClick={() => setShowNewMessaging(false)}
-          className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-            !showNewMessaging
-              ? 'bg-gray-900 text-white'
-              : 'text-gray-600 hover:bg-gray-100'
-          }`}
-        >
-          Old (Sunday Planning)
-        </button>
-        <button
-          onClick={() => setShowNewMessaging(true)}
-          className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-            showNewMessaging
-              ? 'bg-purple-600 text-white'
-              : 'text-gray-600 hover:bg-gray-100'
-          }`}
-        >
-          New (ADHD-focused)
-        </button>
-      </div>
-
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-20">
           {/* Left Column - Text Content */}
@@ -214,30 +168,6 @@ const CalendarHeroSection = () => {
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-3 py-2 lg:px-4 lg:py-2 rounded-full text-sm font-medium">
                 <Calendar className="w-4 h-4" />
                 <span className="text-xs sm:text-sm">{messaging.badge}</span>
-              </div>
-              
-              {/* Mobile Messaging Toggle */}
-              <div className="flex sm:hidden bg-white rounded-lg shadow-md border border-gray-200 p-1 w-fit">
-                <button
-                  onClick={() => setShowNewMessaging(false)}
-                  className={`px-2 py-1 rounded-md text-xs font-medium transition-colors ${
-                    !showNewMessaging
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                >
-                  Old (Sunday Planning)
-                </button>
-                <button
-                  onClick={() => setShowNewMessaging(true)}
-                  className={`px-2 py-1 rounded-md text-xs font-medium transition-colors ${
-                    showNewMessaging
-                      ? 'bg-purple-600 text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                >
-                  New (ADHD-focused)
-                </button>
               </div>
               
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight">

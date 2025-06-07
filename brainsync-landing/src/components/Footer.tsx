@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -64,6 +65,21 @@ const Footer = () => {
             </div>
             
             <div className="mt-6 text-center">
+              <div className="mb-4 space-x-4">
+                <Link 
+                  to="/privacy" 
+                  className="text-xs text-gray-400 hover:text-blue-300 transition-colors underline"
+                >
+                  Privacy Policy
+                </Link>
+                <span className="text-gray-600">|</span>
+                <Link 
+                  to="/terms" 
+                  className="text-xs text-gray-400 hover:text-blue-300 transition-colors underline"
+                >
+                  Terms of Service
+                </Link>
+              </div>
               <p className="text-xs text-gray-500">
                 © 2025 BrainSync Pro. Built with 💙 for the ADHD community.
               </p>
