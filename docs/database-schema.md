@@ -1,4 +1,4 @@
-# 🗄️ BrainSync - Database Schema Documentation
+# 🗄️ goodberry - Database Schema Documentation
 ## Calendar First - ADHD Brain-Friendly Data Structure
 
 ## 🧠 **ADHD-Friendly Development Notes**
@@ -8,7 +8,7 @@
 - **Product Requirements**: `docs/product-requirements.md` - Calendar First features
 - **Roadmap**: `docs/roadmap.md` - Implementation timeline
 - **Backend Code**: `src/` directory - Current implementation
-- **Landing Page**: `brainsync-landing/src/components/calendar/CalendarHeroSection.tsx` - Live demo
+- **Landing Page**: `goodberry-landing/src/components/calendar/CalendarHeroSection.tsx` - Live demo
 
 ### 🎯 **Scope Boundaries**
 - ✅ **In-Scope**: Conversational calendar data, mental health gaps, brain trap patterns, ADHD energy tracking
@@ -200,7 +200,7 @@ CREATE TABLE external_calendar_sync (
   -- Integration Settings
   import_existing_events BOOLEAN DEFAULT true,
   export_mental_health_gaps BOOLEAN DEFAULT false,
-  event_prefix VARCHAR(50), -- prefix for BrainSync-created events
+  event_prefix VARCHAR(50), -- prefix for goodberry-created events
   
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()

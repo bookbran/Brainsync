@@ -1,4 +1,4 @@
-# 📋 BrainSync - Product Requirements Document (PRD)
+# 📋 goodberry - Product Requirements Document (PRD)
 ## The Calendar Revolution for ADHD Brains
 
 ## 🌟 **User Experience Vision** (From Landing Page)
@@ -6,7 +6,7 @@
 ### **Core Vision**: "What If Your Calendar Actually Understood ADHD?"
 
 **The Emotional Journey We're Building**:
-BrainSync transforms the Sunday planning experience from overwhelming anxiety ("Sunday Scaries") into energizing self-discovery ("Sunday Celebration"). Our AI celebrates what you've accomplished, learns from how you actually work, and plans with flexibility built in.
+goodberry transforms the Sunday planning experience from overwhelming anxiety ("Sunday Scaries") into energizing self-discovery ("Sunday Celebration"). Our AI celebrates what you've accomplished, learns from how you actually work, and plans with flexibility built in.
 
 **The Partnership Reality**:
 Most ADHD people either avoid Sunday planning entirely (because it feels overwhelming) or attempt it and feel like failures when rigid plans don't work with chaotic, beautiful brains. We're building something different: **ADHD partnership** with an AI that reflects the best of human wisdom and compassion, helping you gain control and realize your goals through partnership, not pressure.
@@ -77,7 +77,7 @@ What made that work so well was your energy strategy - you honored your ADHD bra
 - "Already feeling behind before the week even starts" 😰
 - "Anxious about energy depletion from having to 'perform' all week" 😞
 
-**After (BrainSync Sunday Flow)**:
+**After (goodberry Sunday Flow)**:
 - "Celebrate last week's wins (planned AND unplanned!)" 🎉
 - "Discover patterns: How did things actually get done?" 🤔
 - "Use that wisdom to plan next week smarter" 💡
@@ -210,7 +210,7 @@ User: "Time, definitely. Maybe 10-15 hours a week for marketing and client work.
 - **Database Schema**: `docs/database-schema.md` - Calendar-first data structure
 - **Roadmap**: `docs/roadmap.md` - Calendar feature timeline
 - **Backend Code**: `src/` directory - Conversational AI implementation
-- **Landing Page**: `brainsync-landing/src/components/calendar/CalendarHeroSection.tsx` - Live product demo
+- **Landing Page**: `goodberry-landing/src/components/calendar/CalendarHeroSection.tsx` - Live product demo
 
 ### 🎯 **Scope Boundaries**
 - ✅ **In-Scope**: Conversational calendar building, mental health gaps, brain trap escape, ADHD energy patterns
@@ -222,7 +222,7 @@ User: "Time, definitely. Maybe 10-15 hours a week for marketing and client work.
 
 **Core Vision**: "What If Your Calendar Actually Understood ADHD?"
 
-BrainSync is a conversational AI calendar system that builds schedules **through natural chat**, preserves **Mental Health Gaps**, helps users **escape brain traps**, and celebrates **every choice** - even the "creative" ones. Finally, a calendar that works WITH your beautiful, chaotic ADHD brain.
+goodberry is a conversational AI calendar system that builds schedules **through natural chat**, preserves **Mental Health Gaps**, helps users **escape brain traps**, and celebrates **every choice** - even the "creative" ones. Finally, a calendar that works WITH your beautiful, chaotic ADHD brain.
 
 ## Core Philosophy
 
@@ -554,7 +554,7 @@ Subject: "Your Week Ahead - Let's Make It Happen! 🚀"
 - **Medication Timing Integration**: Schedule around ADHD medication windows
 
 ### Enhanced Conversation
-- **Voice Input**: "Hey BrainSync, I need to reschedule everything"
+- **Voice Input**: "Hey goodberry, I need to reschedule everything"
 - **Family Integration**: Include family members in scheduling decisions
 - **Group Planning**: ADHD-friendly family/team calendar coordination
 - **Crisis Mode**: Special support during overwhelming periods

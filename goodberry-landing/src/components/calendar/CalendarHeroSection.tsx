@@ -165,6 +165,15 @@ const CalendarHeroSection = () => {
           {/* Left Column - Text Content */}
           <div className="space-y-6 lg:space-y-8">
             <div className="space-y-4 lg:space-y-6">
+              {/* Goodberry Logo/Image */}
+              <div className="flex justify-center lg:justify-start mb-4 lg:mb-6">
+                <img 
+                  src="/goodberry.png" 
+                  alt="Goodberry - BrainSync Pro" 
+                  className="h-12 w-auto sm:h-16 md:h-20 lg:h-24 object-contain drop-shadow-lg"
+                />
+              </div>
+              
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-3 py-2 lg:px-4 lg:py-2 rounded-full text-sm font-medium">
                 <Calendar className="w-4 h-4" />
                 <span className="text-xs sm:text-sm">{messaging.badge}</span>
@@ -207,12 +216,18 @@ const CalendarHeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-lg text-sm lg:text-base">
+              <a 
+                href="#waitlist" 
+                className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-lg text-sm lg:text-base text-center"
+              >
                 {messaging.cta1}
-              </button>
-              <button className="border-2 border-purple-300 text-purple-700 px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-purple-50 transition-colors text-sm lg:text-base">
+              </a>
+              <a 
+                href="#demo" 
+                className="border-2 border-purple-300 text-purple-700 px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-purple-50 transition-colors text-sm lg:text-base text-center"
+              >
                 {messaging.cta2}
-              </button>
+              </a>
             </div>
           </div>
 
@@ -300,7 +315,7 @@ const CalendarHeroSection = () => {
                         <div className="border-b border-gray-200 pb-3 lg:pb-4">
                           <div className="flex items-center space-x-2 lg:space-x-3 mb-2 lg:mb-3">
                             <Mail className="w-4 h-4 lg:w-6 lg:h-6 text-blue-600" />
-                            <span className="text-sm lg:text-lg font-medium text-blue-600">BrainSync Weekly</span>
+                            <span className="text-sm lg:text-lg font-medium text-blue-600">goodberry Weekly</span>
                           </div>
                           <h4 className="font-bold text-gray-900 text-lg lg:text-2xl">{currentFeature.content.subject}</h4>
                         </div>
@@ -611,7 +626,7 @@ const CalendarHeroSection = () => {
         <div className="relative">
           <div className="text-center mb-8 lg:mb-12">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 lg:mb-4">
-              Your BrainSync
+              Your goodberry
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"> Journey</span>
             </h2>
             <p className="text-base lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
@@ -747,10 +762,13 @@ const CalendarHeroSection = () => {
 
             {/* CTA */}
             <div className="mt-8 lg:mt-12 text-center">
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 lg:px-10 lg:py-5 rounded-xl font-bold text-base lg:text-lg hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-xl flex items-center space-x-3 mx-auto">
+              <a 
+                href="#waitlist" 
+                className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 lg:px-10 lg:py-5 rounded-xl font-bold text-base lg:text-lg hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-xl flex items-center space-x-3 mx-auto w-fit"
+              >
                 <span>Begin Your Journey</span>
                 <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
-              </button>
+              </a>
             </div>
           </div>
         </div>

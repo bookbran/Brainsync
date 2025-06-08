@@ -20,7 +20,7 @@ const PrivacyPolicy = () => {
               <ul className="list-disc list-inside text-gray-700 space-y-2">
                 <li>Calendar reminders and scheduling notifications</li>
                 <li>ADHD-friendly task and appointment alerts</li>
-                <li>Onboarding messages to help set up your BrainSync experience</li>
+                <li>Onboarding messages to help set up your goodberry experience</li>
                 <li>Occasional product updates and feature announcements</li>
               </ul>
               <p className="text-gray-800 mt-4">
@@ -90,7 +90,7 @@ const PrivacyPolicy = () => {
               <br />
               <strong>Email:</strong> dan@aportlandcareer.com
               <br />
-              <strong>Privacy Officer:</strong> BrainSync Pro Team
+              <strong>Privacy Officer:</strong> goodberry Team
             </p>
           </section>
 

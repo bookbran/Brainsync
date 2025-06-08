@@ -1,4 +1,4 @@
-# 🧠⚡ BrainSync Pro - ADHD Landing Page Marketing Strategy
+# 🧠⚡ goodberry - ADHD Landing Page Marketing Strategy
 
 **Technical Lead Research Report**: Based on analysis of successful ADHD productivity tools and Microsoft accessibility case studies.
 
@@ -74,7 +74,7 @@
 
 ---
 
-## 🎨 BrainSync Pro Brand Voice Strategy
+## 🎨 goodberry Brand Voice Strategy
 
 ### 🆕 **Choice Empowerment Message Framework**
 **Primary Hook:** "Finally, an AI that gets why you have 47 browser tabs open and celebrates your choices (even the 'bad' ones)"
@@ -134,7 +134,7 @@
 
 ### 🆕 **Hero Section (Choice-Empowered)**
 **Headline:** "Finally, an AI that gets why you have 47 browser tabs open and celebrates your choices (even the 'bad' ones)"
-**Subhead:** "BrainSync Pro connects ALL your apps to deliver gentle, choice-celebrating daily guidance via email. Built for ADHD brains who are tired of productivity pressure."
+**Subhead:** "goodberry connects ALL your apps to deliver gentle, choice-celebrating daily guidance via email. Built for ADHD brains who are tired of productivity pressure."
 **CTA:** "Get My First Choice-Empowered Day"
 
 ### 🆕 **Problem Section (Choice & Productivity Pressure)**  
@@ -149,7 +149,7 @@
 
 ### 🆕 **Solution Section (Choice Empowerment Focus)**
 **Headline:** "What if your AI celebrated your choices instead of judging them?"
-**Subhead:** "BrainSync Pro is the first AI agent that analyzes ALL your data to deliver gentle, choice-celebrating guidance that honors your ADHD brain."
+**Subhead:** "goodberry is the first AI agent that analyzes ALL your data to deliver gentle, choice-celebrating guidance that honors your ADHD brain."
 
 **🆕 Choice-Empowerment Features:**
 - 🎯 **Choice Celebration:** Honors ALL decisions as conscious choices, even "unproductive" ones
@@ -163,7 +163,7 @@
 
 ### 🆕 **Choice Philosophy Section**
 **Headline:** "Your choices matter more than your productivity"
-**Subhead:** "BrainSync Pro is built on a revolutionary philosophy: choice empowerment over compliance."
+**Subhead:** "goodberry is built on a revolutionary philosophy: choice empowerment over compliance."
 
 **Philosophy Points:**
 - ✨ **Choice Over Compliance:** We measure self-awareness, not task completion
@@ -641,7 +641,7 @@ Your CalendarHeroSection.tsx already tests these approaches:
 6. **⚡ Real-time choice support at transition points**
 7. **🌱 Progress through awareness rather than forced compliance**
 
-The landing page strategy now positions BrainSync Pro as the **choice empowerment revolution** for ADHD brains, differentiating us from every other productivity tool that focuses on compliance and optimization rather than autonomy and celebration. 🎪✨
+The landing page strategy now positions goodberry as the **choice empowerment revolution** for ADHD brains, differentiating us from every other productivity tool that focuses on compliance and optimization rather than autonomy and celebration. 🎪✨
 
 ---
 
@@ -649,7 +649,7 @@ The landing page strategy now positions BrainSync Pro as the **choice empowermen
 
 ### **🎪 Two-Landing-Page System** (Toggle Switch)
 ```
-brainsync-landing/src/
+goodberry-landing/src/
 ├── App.tsx                 # Main router with Calendar/API toggle
 ├── CalendarApp.tsx         # Calendar First landing page
 └── components/

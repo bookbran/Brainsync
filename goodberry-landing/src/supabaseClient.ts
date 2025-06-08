@@ -6,7 +6,7 @@ const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 // Waitlist signup function
-export const addToWaitlist = async (email: string, name?: string) => {
+export const addToWaitlist = async (email: string, name?: string, phone?: string, smsConsent?: boolean) => {
   try {
     const { data, error } = await supabase
       .from('waitlist')
@@ -14,6 +14,8 @@ export const addToWaitlist = async (email: string, name?: string) => {
         {
           email,
           name: name || '',
+          phone: phone || '',
+          sms_consent: smsConsent || false,
           created_at: new Date().toISOString(),
           source: 'landing_page'
         }

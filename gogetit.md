@@ -1,4 +1,4 @@
-# 🎯 GOGETIT.md - BrainSync Development Roadmap
+# 🎯 GOGETIT.md - goodberry Development Roadmap
 ## The Calendar System That Actually Works with ADHD Brains
 
 > **Our Mission**: Build the conversational calendar assistant that Daniel (and other ADHD brains) desperately need. 
@@ -23,7 +23,7 @@ A working prototype he can text with that builds events in his real Google Calen
 - **📋 Product Requirements**: `docs/product-requirements.md` - Enhanced 7-phase onboarding + foundation intelligence 
 - **🗃️ Database Schema**: `docs/database-schema.md` - Memory system + foundation documents + success timeline
 - **🎨 Landing Page Analysis**: `docs/adhd-landing-page-strategy.md` - Component architecture + positioning
-- **💻 Landing Page Code**: `brainsync-landing/` - React app (`npm start` to run locally)
+- **💻 Landing Page Code**: `goodberry-landing/` - React app (`npm start` to run locally)
 
 ---
 

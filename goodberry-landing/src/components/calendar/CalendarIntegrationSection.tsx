@@ -26,7 +26,7 @@ const CalendarIntegrationSection = () => {
             <span className="text-adhd-blue">your entire scheduling ecosystem</span>
           </h2>
           <p className="text-xl text-adhd-gray max-w-3xl mx-auto">
-            BrainSync Pro syncs with all your calendar and productivity tools, creating a unified view of your time 
+            goodberry syncs with all your calendar and productivity tools, creating a unified view of your time 
             that actually makes sense for ADHD brains.{' '}
             <span className="adhd-highlight">No more app switching. No more missed connections.</span>
           </p>

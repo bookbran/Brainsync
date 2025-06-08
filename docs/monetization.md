@@ -1,11 +1,11 @@
-# 💰 BrainSyncPro - Monetization Strategy
+# 💰 goodberry - Monetization Strategy
 ## ADHD-Focused Calendar AI Monetization Plan
 
 ---
 
 ## 📋 **Executive Summary**
 
-BrainSyncPro addresses a critical gap in the ADHD productivity market with a conversational calendar assistant that actually works with ADHD brains. Our monetization strategy leverages:
+goodberry addresses a critical gap in the ADHD productivity market with a conversational calendar assistant that actually works with ADHD brains. Our monetization strategy leverages:
 
 - **Underserved Market**: 10-15M adults with ADHD seeking tools that understand their neurotype
 - **High Willingness to Pay**: ADHD community pays premium for effective solutions 
@@ -37,7 +37,7 @@ The ADHD community has been burned by productivity tools that don't work. We bui
 - **Limit**: 10 calendar events per month
 - **Duration**: Unlimited (permanent free tier)
 
-**Value Proposition**: "Experience how BrainSync works with your ADHD brain - no credit card required"
+**Value Proposition**: "Experience how goodberry works with your ADHD brain - no credit card required"
 
 **Purpose**: 
 - Demonstrate core value proposition
@@ -63,7 +63,7 @@ The ADHD community has been burned by productivity tools that don't work. We bui
 
 **Value Proposition**: "Your ADHD brain deserves a calendar that evolves with you"
 
-**Key Differentiator**: This tier unlocks the full BrainSync experience - persistent memory that makes every conversation more intelligent.
+**Key Differentiator**: This tier unlocks the full goodberry experience - persistent memory that makes every conversation more intelligent.
 
 ---
 
@@ -91,7 +91,7 @@ The ADHD community has been burned by productivity tools that don't work. We bui
 
 ---
 
-## 🎯 **Why This Strategy Works for BrainSync**
+## 🎯 **Why This Strategy Works for goodberry**
 
 ### **1. ADHD Community Monetization Dynamics**
 
@@ -223,7 +223,7 @@ The ADHD community has been burned by productivity tools that don't work. We bui
 ### **Partnership Revenue Streams**
 **ADHD Coach Partnerships**: 
 - Revenue share model for coach referrals
-- White-label BrainSync for coaching practices
+- White-label goodberry for coaching practices
 - Potential 15-20% revenue share
 
 **Healthcare Integration**:
@@ -339,13 +339,13 @@ The ADHD community has been burned by productivity tools that don't work. We bui
 
 ## 💡 **Final Recommendation**
 
-BrainSyncPro has the potential to become the definitive calendar solution for the ADHD community. The key to successful monetization is:
+goodberry has the potential to become the definitive calendar solution for the ADHD community. The key to successful monetization is:
 
 1. **Start with Trust**: Generous free tier proves value before asking for payment
 2. **Scale with Value**: Each paid tier provides exponentially more intelligence and support  
 3. **Honor the Community**: ADHD-first approach in pricing, features, and communication
 4. **Build for Retention**: Persistent memory and pattern learning create natural switching costs
 
-The ADHD market is underserved, willing to pay for effective solutions, and incredibly loyal when tools actually work. With the right execution, BrainSyncPro can build a sustainable, growing business while genuinely improving lives.
+The ADHD market is underserved, willing to pay for effective solutions, and incredibly loyal when tools actually work. With the right execution, goodberry can build a sustainable, growing business while genuinely improving lives.
 
 **Recommended Starting Point**: Launch Foundation tier immediately, begin building Core tier waitlist, and plan Core tier launch for Month 4-6 timeframe based on user feedback and feature completion. 

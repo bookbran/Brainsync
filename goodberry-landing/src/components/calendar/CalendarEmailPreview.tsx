@@ -119,7 +119,7 @@ const CalendarEmailPreview = () => {
                         <span className="text-white text-sm font-bold">🧠</span>
                       </div>
                       <div>
-                        <p className="font-semibold text-black">BrainSync Pro</p>
+                        <p className="font-semibold text-black">goodberry</p>
                         <p className="text-xs text-gray-500">Your Calendar Companion</p>
                       </div>
                     </div>
@@ -216,7 +216,7 @@ const CalendarEmailPreview = () => {
                         <span className="text-white text-sm font-bold">🧠</span>
                       </div>
                       <div>
-                        <p className="font-semibold text-black">BrainSync Pro</p>
+                        <p className="font-semibold text-black">goodberry</p>
                         <p className="text-xs text-gray-500">Your Calendar Companion</p>
                       </div>
                     </div>
@@ -318,8 +318,8 @@ const CalendarEmailPreview = () => {
                     <span className="text-xl">📅</span>
                   </div>
                   <div>
-                    <p className="font-semibold">BrainSync Pro</p>
-                    <p className="text-sm opacity-75">brainsync@yourbestweek.com</p>
+                    <p className="font-semibold">goodberry</p>
+                    <p className="text-sm opacity-75">hello@goodberry.ai</p>
                   </div>
                 </div>
                 <div className="mt-4">
@@ -419,8 +419,8 @@ const CalendarEmailPreview = () => {
                     <span className="text-xl">🧠</span>
                   </div>
                   <div>
-                    <p className="font-semibold">BrainSync Pro</p>
-                    <p className="text-sm opacity-75">brainsync@yourbestweek.com</p>
+                    <p className="font-semibold">goodberry</p>
+                    <p className="text-sm opacity-75">hello@goodberry.ai</p>
                   </div>
                 </div>
                 <div className="mt-4">

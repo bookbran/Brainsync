@@ -1,11 +1,11 @@
 # 🧠 Enhanced Onboarding Flow - Structured Prioritization for ADHD
-## BrainSync Calendar Assistant - Complete Conversation Framework
+## goodberry Calendar Assistant - Complete Conversation Framework
 
 ---
 
 ## 🎯 **Overview**
 
-This enhanced onboarding flow integrates structured prioritization elements with BrainSync's existing ADHD-friendly conversation approach. The result is a deeper, more effective onboarding that helps users understand their values, organize their priorities, and build calendars that truly work with ADHD brains.
+This enhanced onboarding flow integrates structured prioritization elements with goodberry's existing ADHD-friendly conversation approach. The result is a deeper, more effective onboarding that helps users understand their values, organize their priorities, and build calendars that truly work with ADHD brains.
 
 ### **📁 Related Documentation**
 - **Product Requirements**: `docs/product-requirements.md` - How this fits into overall user experience vision
@@ -14,7 +14,7 @@ This enhanced onboarding flow integrates structured prioritization elements with
 - **Roadmap**: `docs/roadmap.md` - Development phases and ADHD-specific principles
 
 ### **Key Innovation**: 
-Instead of just asking "what do you want to accomplish," we guide users through a complete brain dump → discovery → organization → values reflection → time allocation → prioritization sequence, all wrapped in BrainSync's choice-celebrating, ADHD-understanding personality.
+Instead of just asking "what do you want to accomplish," we guide users through a complete brain dump → discovery → organization → values reflection → time allocation → prioritization sequence, all wrapped in goodberry's choice-celebrating, ADHD-understanding personality.
 
 ---
 

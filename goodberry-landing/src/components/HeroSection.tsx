@@ -31,7 +31,7 @@ const HeroSection = () => {
         {/* Subheadline */}
         <div className="mb-10">
           <p className="text-xl md:text-2xl text-adhd-gray max-w-4xl mx-auto leading-relaxed">
-            BrainSync Pro connects <span className="adhd-highlight">ALL your apps</span> to deliver gentle, 
+            goodberry connects <span className="adhd-highlight">ALL your apps</span> to deliver gentle, 
             choice-celebrating daily guidance via email. Built for ADHD brains who are 
             <span className="adhd-highlight">tired of productivity pressure</span>.
           </p>

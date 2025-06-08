@@ -1,10 +1,12 @@
--- BrainSync Pro Waitlist Table
+-- Goodberry Waitlist Table
 -- Run this in Supabase SQL Editor
 
 CREATE TABLE IF NOT EXISTS waitlist (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
   email text UNIQUE NOT NULL,
   name text,
+  phone text,
+  sms_consent boolean DEFAULT false,
   created_at timestamp with time zone DEFAULT now(),
   source text DEFAULT 'landing_page',
   updated_at timestamp with time zone DEFAULT now()

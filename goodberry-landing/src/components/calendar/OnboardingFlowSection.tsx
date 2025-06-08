@@ -201,7 +201,7 @@ const OnboardingFlowSection = () => {
                   </div>
                   <div className="flex-1">
                     <div className="bg-white rounded-2xl rounded-tl-md p-4 shadow-sm border border-gray-200">
-                      <div className="text-sm font-medium text-purple-600 mb-1">BrainSync AI</div>
+                      <div className="text-sm font-medium text-purple-600 mb-1">goodberry</div>
                       <p className="text-gray-800">{onboardingPhases[activePhase].conversation.ai}</p>
                     </div>
                   </div>
@@ -227,7 +227,7 @@ const OnboardingFlowSection = () => {
                   </div>
                   <div className="flex-1">
                     <div className="bg-white rounded-2xl rounded-tl-md p-4 shadow-sm border border-gray-200">
-                      <div className="text-sm font-medium text-purple-600 mb-1">BrainSync AI</div>
+                      <div className="text-sm font-medium text-purple-600 mb-1">goodberry</div>
                       <p className="text-gray-800">{onboardingPhases[activePhase].conversation.aiResponse}</p>
                     </div>
                   </div>
@@ -330,7 +330,7 @@ const OnboardingFlowSection = () => {
                       </div>
                       <div className="flex-1">
                         <div className="bg-white rounded-2xl rounded-tl-md p-4 shadow-sm border border-gray-200">
-                          <div className="text-sm font-medium text-purple-600 mb-1">BrainSync AI</div>
+                          <div className="text-sm font-medium text-purple-600 mb-1">goodberry</div>
                           <p className="text-gray-800">"Let's celebrate what happened last week! I see you had that big client presentation Thursday. How did it go?"</p>
                         </div>
                       </div>
@@ -354,7 +354,7 @@ const OnboardingFlowSection = () => {
                       </div>
                       <div className="flex-1">
                         <div className="bg-white rounded-2xl rounded-tl-md p-4 shadow-sm border border-gray-200">
-                          <div className="text-sm font-medium text-purple-600 mb-1">BrainSync AI</div>
+                          <div className="text-sm font-medium text-purple-600 mb-1">goodberry</div>
                           <p className="text-gray-800">"That's brilliant! 🎉 Post-workout + buffer time = presentation magic. Let's definitely use that pattern for your pitch next week. What else felt really good this week?"</p>
                         </div>
                       </div>
@@ -529,7 +529,7 @@ const OnboardingFlowSection = () => {
                       <div>
                         <p className="font-semibold text-blue-900 mb-1">Gradual, Sustainable Growth</p>
                         <p className="text-blue-800 text-sm">
-                          Each month builds naturally on the last. BrainSync gradually adds elements as you build confidence and the AI learns your patterns.
+                          Each month builds naturally on the last. goodberry gradually adds elements as you build confidence and the AI learns your patterns.
                         </p>
                       </div>
                     </div>
@@ -546,7 +546,7 @@ const OnboardingFlowSection = () => {
                       </div>
                       <div className="flex-1">
                         <div className="bg-gray-100 rounded-2xl rounded-tl-md p-3 shadow-sm">
-                          <div className="text-xs font-medium text-blue-600 mb-1">BrainSync AI</div>
+                          <div className="text-xs font-medium text-blue-600 mb-1">goodberry</div>
                           <p className="text-gray-800 text-sm">
                             {activePhase === 0 ? 
                               "Great! I've started with your core essentials. As I learn your patterns, I'll suggest energy-aligned additions. How does this basic structure feel?" :
@@ -584,7 +584,7 @@ const OnboardingFlowSection = () => {
                       </div>
                       <div className="flex-1">
                         <div className="bg-gray-100 rounded-2xl rounded-tl-md p-3 shadow-sm">
-                          <div className="text-xs font-medium text-blue-600 mb-1">BrainSync AI</div>
+                          <div className="text-xs font-medium text-blue-600 mb-1">goodberry</div>
                           <p className="text-gray-800 text-sm">
                             {activePhase === 0 ? 
                               "Exactly! We'll build slowly as you gain confidence. Next month I'll start suggesting energy optimizations based on what I observe. ✨" :
@@ -870,7 +870,7 @@ const OnboardingFlowSection = () => {
                                   <Brain className="w-4 h-4 text-white" />
                                 </div>
                                 <div>
-                                  <div className="font-bold text-gray-900">BrainSync</div>
+                                  <div className="font-bold text-gray-900">goodberry</div>
                                   <div className="text-xs text-green-600">● Active now</div>
                                 </div>
                               </div>
@@ -934,7 +934,7 @@ const OnboardingFlowSection = () => {
                                   <Brain className="w-4 h-4 text-white" />
                                 </div>
                                 <div>
-                                  <div className="font-bold text-gray-900">BrainSync</div>
+                                  <div className="font-bold text-gray-900">goodberry</div>
                                   <div className="text-xs text-green-600">● Active now</div>
                                 </div>
                               </div>
@@ -1004,7 +1004,7 @@ const OnboardingFlowSection = () => {
                                   <Brain className="w-4 h-4 text-white" />
                                 </div>
                                 <div>
-                                  <div className="font-bold text-gray-900">BrainSync</div>
+                                  <div className="font-bold text-gray-900">goodberry</div>
                                   <div className="text-xs text-green-600">● Active now</div>
                                 </div>
                               </div>
@@ -1049,7 +1049,7 @@ const OnboardingFlowSection = () => {
                       <div className="px-6">
                         <h6 className="font-bold text-white mb-6 flex items-center text-lg">
                           <Tv className="w-5 h-5 mr-3" />
-                          Before BrainSync
+                          Before goodberry
                         </h6>
                         <div className="space-y-4 text-white">
                           <p>🕚 10:30 PM: "Just one more episode..."</p>
@@ -1064,7 +1064,7 @@ const OnboardingFlowSection = () => {
                       <div className="px-6 pl-20">
                         <h6 className="font-bold text-white mb-6 flex items-center text-lg">
                           <CheckCircle2 className="w-5 h-5 mr-3" />
-                          With BrainSync
+                          With goodberry
                         </h6>
                         <div className="space-y-4 text-white">
                           <p>🕚 10:30 PM: Gentle nudge arrives</p>

@@ -219,6 +219,15 @@ const CalendarHeroSection = () => {
           {/* Left Column - Text Content */}
           <div className="space-y-8">
             <div className="space-y-6">
+              {/* Goodberry Logo/Image */}
+              <div className="flex justify-center lg:justify-start mb-6">
+                <img 
+                  src="/goodberry.png" 
+                  alt="Goodberry - BrainSync Pro" 
+                  className="h-16 w-auto md:h-20 lg:h-24 object-contain drop-shadow-lg"
+                />
+              </div>
+              
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">
                 <Calendar className="w-4 h-4" />
                 <span>{currentMessaging.badge}</span>

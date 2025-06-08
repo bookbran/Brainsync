@@ -27,8 +27,8 @@ const EmailPreview = () => {
                   <span className="text-xl">🧠</span>
                 </div>
                 <div>
-                  <p className="font-semibold">BrainSync Pro</p>
-                  <p className="text-sm opacity-75">brainsync@aportlandcareer.com</p>
+                  <p className="font-semibold">goodberry</p>
+                  <p className="text-sm opacity-75">goodberry@aportlandcareer.com</p>
                 </div>
               </div>
               <div className="mt-4">
@@ -294,7 +294,7 @@ const EmailPreview = () => {
             {/* Email footer */}
             <div className="bg-gray-50 p-6 text-center">
               <p className="text-sm text-adhd-gray">
-                BrainSync Pro - Celebrating your choices, honoring your brain
+                goodberry - Celebrating your choices, honoring your brain
               </p>
             </div>
           </div>

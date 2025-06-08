@@ -11,6 +11,15 @@ const HeroSection = () => {
       </div>
       
       <div className="relative z-10 max-w-6xl mx-auto text-center">
+        {/* Goodberry Logo/Image */}
+        <div className="mb-8 flex justify-center">
+          <img 
+            src="/goodberry.png" 
+            alt="Goodberry - BrainSync Pro" 
+            className="h-24 w-auto md:h-32 lg:h-40 object-contain drop-shadow-lg"
+          />
+        </div>
+        
         {/* Main headline - The hook that grabs ADHD brains */}
         <div className="mb-8">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-adhd-dark leading-tight mb-6">

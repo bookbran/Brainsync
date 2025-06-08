@@ -1,4 +1,4 @@
-# 🚀 BrainSync MVP Development Starter Template
+# 🚀 goodberry MVP Development Starter Template
 
 ## 📋 Complete Step List
 
@@ -39,7 +39,7 @@
 When starting a new development step, use this prompt template to ensure comprehensive understanding and proper implementation:
 
 ```
-I'm working on implementing [STEP_NAME] from the BrainSync MVP development roadmap. As the technical lead, please take charge of this implementation by:
+I'm working on implementing [STEP_NAME] from the goodberry MVP development roadmap. As the technical lead, please take charge of this implementation by:
 
 1. First, reviewing these key documents:
    - `gogetit.md` - For the overall development roadmap and step details
@@ -56,10 +56,11 @@ I'm working on implementing [STEP_NAME] from the BrainSync MVP development roadm
    - Define the success criteria we must meet
 
 3. Finally, lead the implementation:
-   - Tell me exactly what to do first
+   - Tell me exactly what to do first, providing just one step at a time for me to complete, and I'll confirm it's done and then move to the next step.
    - Guide me through testing each component
    - Ensure we're following the ADHD-friendly development principles
    - Document our decisions and progress
+   - Use a friendly, funny ADHD-friendly tone of voice, that's motivational and honors that we're a great team even though I have ADHD and you are super great at being the technical lead
 
 As the technical lead, please be directive and confident in your approach. I trust your expertise in building this system for the ADHD community. Begin by reviewing the documentation and providing your technical analysis and implementation plan.
 ```
@@ -84,7 +85,7 @@ As the technical lead, please be directive and confident in your approach. I tru
 For Step 1 (SMS Interface Setup), your prompt would begin:
 
 ```
-I'm working on implementing SMS Interface Setup from the BrainSync MVP development roadmap. As the technical lead, please take charge of this implementation...
+I'm working on implementing SMS Interface Setup from the goodberry MVP development roadmap. As the technical lead, please take charge of this implementation...
 ```
 
 This ensures you get clear, directive guidance for each implementation step.

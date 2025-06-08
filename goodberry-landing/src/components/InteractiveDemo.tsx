@@ -61,7 +61,7 @@ const InteractiveDemo = () => {
                     <span className="text-white text-sm font-bold">🧠</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-black">BrainSync Pro</p>
+                    <p className="font-semibold text-black">goodberry</p>
                     <p className="text-xs text-gray-500">Your Choice Companion</p>
                   </div>
                 </div>
@@ -158,7 +158,7 @@ const InteractiveDemo = () => {
                     <span className="text-white text-sm font-bold">🧠</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-black">BrainSync Pro</p>
+                    <p className="font-semibold text-black">goodberry</p>
                     <p className="text-xs text-gray-500">Your Choice Companion</p>
                   </div>
                 </div>

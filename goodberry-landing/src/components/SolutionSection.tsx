@@ -70,7 +70,7 @@ const SolutionSection = () => {
             and empowered your journey?
           </h2>
           <p className="text-xl text-adhd-gray max-w-3xl mx-auto">
-            BrainSync Pro is the first AI agent that transforms your relationship with productivity—analyzing ALL your data to deliver 
+            goodberry is the first AI agent that transforms your relationship with productivity—analyzing ALL your data to deliver 
             gentle, choice-celebrating guidance that turns daily overwhelm into{' '}
             <span className="adhd-highlight">empowered self-awareness</span>.
           </p>
@@ -104,7 +104,7 @@ const SolutionSection = () => {
               <span className="text-blue-600">all your favorite apps</span>
             </h3>
             <p className="text-xl text-adhd-gray max-w-3xl mx-auto">
-              No more manual data entry. BrainSync Pro automatically gathers insights from the tools you already use, 
+              No more manual data entry. goodberry automatically gathers insights from the tools you already use, 
               <span className="adhd-highlight">creating a complete picture of your unique patterns</span> to celebrate and empower your choices.
             </p>
           </div>
@@ -151,7 +151,7 @@ const SolutionSection = () => {
               Transform from stuck and judged to celebrated and empowered
             </h3>
             <p className="text-xl text-adhd-gray">
-              BrainSync Pro is built on a revolutionary philosophy: choice empowerment over compliance, 
+              goodberry is built on a revolutionary philosophy: choice empowerment over compliance, 
               self-awareness mastery over productivity pressure.
             </p>
           </div>

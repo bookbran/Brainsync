@@ -45,7 +45,7 @@ const ProblemSection = () => {
             by productivity tools?
           </h2>
           <p className="text-xl text-adhd-gray max-w-3xl mx-auto">
-            If these sound familiar, you're in the right place. We built BrainSync Pro because 
+            If these sound familiar, you're in the right place. We built goodberry because 
             we were <span className="adhd-highlight">tired of the same problems</span> too—and ready to 
             transform from stuck to empowered.
           </p>

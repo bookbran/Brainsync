@@ -94,7 +94,7 @@ const CalendarEvolutionSection = () => {
           </h2>
           
           <p className="text-xl text-indigo-200 max-w-4xl mx-auto">
-            Watch how BrainSync transforms from a simple calendar tool into your personal ADHD success system. 
+            Watch how goodberry transforms from a simple calendar tool into your personal ADHD success system. 
             Every week builds on the last, creating a custom-fitted approach that actually works with your brain.
           </p>
         </div>
@@ -300,7 +300,7 @@ const CalendarEvolutionSection = () => {
               The Magic Is in the Evolution
             </h3>
             <p className="text-lg text-indigo-200 mb-6">
-              Every ADHD brain is unique. BrainSync doesn't force you into someone else's system - 
+              Every ADHD brain is unique. goodberry doesn't force you into someone else's system - 
               it learns YOUR patterns, celebrates YOUR choices, and builds a calendar that actually serves YOUR life.
             </p>
             <button className="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-8 py-4 rounded-lg font-bold hover:from-yellow-300 hover:to-orange-300 transition-all transform hover:scale-105 shadow-lg">

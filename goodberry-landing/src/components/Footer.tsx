@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Logo and tagline */}
           <div className="mb-8">
             <h3 className="text-2xl font-bold mb-2 text-white">
-              🧠⚡ BrainSync Pro
+              🧠⚡ goodberry
             </h3>
             <p className="text-gray-300">
               Celebrating your choices, honoring your brain
@@ -81,7 +81,7 @@ const Footer = () => {
                 </Link>
               </div>
               <p className="text-xs text-gray-500">
-                © 2025 BrainSync Pro. Built with 💙 for the ADHD community.
+                © 2025 goodberry. Built with 💙 for the ADHD community.
               </p>
               <p className="text-xs text-gray-500 mt-2">
                 Choice is power. Your brain is not broken. You deserve gentle guidance.

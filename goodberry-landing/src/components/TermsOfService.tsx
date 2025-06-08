@@ -15,7 +15,7 @@ const TermsOfService = () => {
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">SMS Service Terms</h2>
             <div className="bg-orange-50 border-l-4 border-orange-400 p-6 mb-6">
               <p className="text-gray-800 mb-4">
-                <strong>By opting in to receive SMS messages from BrainSync Pro, you agree to the following:</strong>
+                <strong>By opting in to receive SMS messages from goodberry, you agree to the following:</strong>
               </p>
               <ul className="list-disc list-inside text-gray-700 space-y-2">
                 <li>You consent to receive automated SMS messages related to calendar reminders, scheduling assistance, and service updates</li>
@@ -31,7 +31,7 @@ const TermsOfService = () => {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Service Description</h2>
             <p className="text-gray-700 mb-4">
-              BrainSync Pro is an AI-powered calendar assistant designed specifically for individuals with ADHD. Our service includes:
+              goodberry is an AI-powered calendar assistant designed specifically for individuals with ADHD. Our service includes:
             </p>
             <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
               <li>SMS-based calendar reminders and notifications</li>

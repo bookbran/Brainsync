@@ -1,5 +1,5 @@
 {
-  "name": "brainsync-pro-backend",
+  "name": "goodberry-backend",
   "version": "1.0.0",
   "description": "ADHD-friendly choice empowerment system backend",
   "main": "src/server.js",
@@ -30,6 +30,8 @@
     "winston": "^3.11.0"
   },
   "devDependencies": {
+    "imagemin": "^9.0.1",
+    "imagemin-pngquant": "^10.0.0",
     "jest": "^29.7.0",
     "nodemon": "^3.0.2",
     "supertest": "^6.3.3"
@@ -41,6 +43,6 @@
     "ai-assistant",
     "wellness"
   ],
-  "author": "BrainSync Pro",
+  "author": "goodberry",
   "license": "MIT"
 }

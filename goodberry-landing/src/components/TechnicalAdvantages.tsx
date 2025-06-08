@@ -78,7 +78,7 @@ const TechnicalAdvantages = () => {
         <div className="bg-white bg-opacity-5 rounded-2xl p-8 md:p-12 border border-white border-opacity-10">
           <div className="text-center mb-8">
             <h3 className="text-3xl font-black mb-4 text-white">
-              Why ADHD Brains Love BrainSync Pro
+              Why ADHD Brains Love goodberry
             </h3>
             <p className="text-xl text-gray-200">
               Finally, technology that works WITH your brain, not against it.
@@ -138,7 +138,7 @@ const TechnicalAdvantages = () => {
               </p>
               <p className="text-white text-lg">
                 Your ADHD brain deserves technology that celebrates your uniqueness, not something that tries to "fix" you. 
-                BrainSync Pro is choice empowerment, not productivity pressure.
+                goodberry is choice empowerment, not productivity pressure.
               </p>
             </div>
           </div>

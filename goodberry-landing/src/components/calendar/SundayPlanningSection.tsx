@@ -31,7 +31,7 @@ const SundayPlanningSection = () => {
   };
 
   const duringContent = {
-    title: "BrainSync Sunday Flow",
+    title: "goodberry Sunday Flow",
     description: "AI-guided planning that actually works",
     items: [
       { icon: <Award />, text: "Celebrate last week's wins (planned AND unplanned!)", mood: "🎉" },
@@ -113,7 +113,7 @@ const SundayPlanningSection = () => {
             <div className="bg-white rounded-full p-1 inline-flex space-x-1 shadow-lg">
               {[
                 { key: 'before', label: 'Before', icon: <Coffee className="w-4 h-4" />, color: 'from-red-500 to-orange-500' },
-                { key: 'during', label: 'BrainSync Flow', icon: <Brain className="w-4 h-4" />, color: 'from-green-500 to-emerald-600' },
+                { key: 'during', label: 'goodberry Flow', icon: <Brain className="w-4 h-4" />, color: 'from-green-500 to-emerald-600' },
                 { key: 'after', label: 'After', icon: <Sparkles className="w-4 h-4" />, color: 'from-blue-500 to-indigo-600' }
               ].map((tab) => (
                 <button
