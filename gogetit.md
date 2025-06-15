@@ -12,11 +12,13 @@
 - **📋 Product Vision**: Clear Calendar First approach with foundation intelligence
 - **🏗️ Technical Architecture**: Text conversation → real calendar integration + persistent memory
 - **🗃️ Database Schema**: Complete schema for conversations, memory, foundation documents, success timeline
-- **🎨 Landing Page**: 9 interactive components showcasing the vision
+- **🎨 Landing Page**: Interactive components showcasing the vision
 - **📚 Documentation**: Comprehensive requirements, onboarding flows, and implementation guides
 
 ### 🎯 **What Daniel Needs Most**: 
 A working prototype he can text with that builds events in his real Google Calendar and remembers him as a person.
+
+### **🌐 Website**: https://goodberry.ai
 
 ### 📁 **Documentation Navigation**
 - **🧠 Enhanced Onboarding Flow**: `docs/enhanced-onboarding-flow.md` - Complete conversation framework
@@ -36,6 +38,13 @@ A working prototype he can text with that builds events in his real Google Calen
 - **Celebration Over Pressure**: Every choice celebrated, no judgment in process
 - **Build → Test → Iterate**: Small, testable chunks with real ADHD user validation
 - **Foundation First**: Each phase builds the foundation for the next
+- **🚫 INCLUSIVE LANGUAGE ONLY**: Never use stigmatizing language (see PRD for full guidelines)
+
+### 🗣️ **Anti-Stigma Language Policy**
+**NEVER use language that separates people from their neurodivergence:**
+- ❌ DON'T: "your ADHD brain", "ADHD brains need", "because of your ADHD"
+- ✅ DO: "you", "your brain", "you might find helpful", "what works for you"
+- 📋 **Full guidelines**: See `docs/product-requirements.md` → ADHD-Friendly Language Patterns
 
 ### 🛠️ **ADHD-Friendly Development Workflow**
 - ✅ **Build in small, testable chunks** - Complete one core feature before moving on
