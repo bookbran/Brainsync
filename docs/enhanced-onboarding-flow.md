@@ -76,6 +76,34 @@ The complete enhanced onboarding flow follows this logic tree:
 - "Creative outlets calling to you?"
 - "Financial planning or concerns?"
 
+#### **🏃‍♀️ ADHD Tax Discovery** 
+*Critical Addition: Capture Burdensome Tasks for Energizing Integration*
+
+**Purpose**: Identify hard, boring tasks that have been accumulating mental weight so they can be transformed into energizing, reward-paired plans (similar to the bill payment conversation in the hero demo).
+
+**AI Prompt**: "Now let's talk about the stuff that's been sitting on your mental list for a while - you know, those boring but important things that feel heavy when you think about them. Things like old bills, tax paperwork, insurance stuff, agreements you need to follow through on, maintenance tasks, or admin work that's been piling up. What's been weighing on your mind?"
+
+**Common ADHD Tax Categories to Explore**:
+- **Financial Admin**: Overdue bills, tax preparation, insurance claims, budget reviews
+- **Legal/Paperwork**: Contracts, agreements, forms, permits, renewals
+- **Health Admin**: Scheduling appointments, insurance paperwork, prescription refills
+- **Home Maintenance**: Repairs, organizing, deep cleaning, seasonal tasks
+- **Professional Follow-up**: Emails, networking, administrative tasks, certification renewals
+- **Personal Admin**: Updating documents, organizing files, subscription cancellations
+
+**Follow-up Validation**: "These kinds of tasks can create this invisible weight, right? Like they're always there in the background using up mental energy. The good news is we can build plans that make them actually energizing by pairing them with rewards and using your natural energy windows."
+
+**Integration Note**: These identified ADHD Tax items become prime candidates for the energizing planning approach demonstrated in the hero section - pairing draining tasks with immediate rewards, using optimal energy windows, and celebrating progress over perfection.
+
+**Example Integration**:
+```
+User mentions: "I have a pile of medical bills I've been avoiding for months"
+
+Later in calendar building: "Perfect! I see you have post-workout energy tomorrow at 10:30 AM. 
+Let's do a 30-minute 'Medical Bill Battle' followed immediately by that hiking trail you love. 
+Even if you don't finish everything, 30 minutes of progress beats months of avoidance anxiety."
+```
+
 ---
 
 ### **Phase 2: Organization + Values Discovery**
