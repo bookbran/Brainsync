@@ -80,7 +80,7 @@ const CalendarEvolutionSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+    <section id="story" className="py-20 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
@@ -303,9 +303,12 @@ const CalendarEvolutionSection = () => {
               Every ADHD brain is unique. goodberry doesn't force you into someone else's system - 
               it learns YOUR patterns, celebrates YOUR choices, and builds a calendar that actually serves YOUR life.
             </p>
-            <button className="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-8 py-4 rounded-lg font-bold hover:from-yellow-300 hover:to-orange-300 transition-all transform hover:scale-105 shadow-lg">
+            <a 
+              href="#waitlist" 
+              className="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-8 py-4 rounded-lg font-bold hover:from-yellow-300 hover:to-orange-300 transition-all transform hover:scale-105 shadow-lg inline-block text-center"
+            >
               Start Building Your Smart Calendar
-            </button>
+            </a>
           </div>
         </div>
       </div>

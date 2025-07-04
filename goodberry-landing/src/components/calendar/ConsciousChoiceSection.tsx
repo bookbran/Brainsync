@@ -5,7 +5,7 @@ import {
 
 const ConsciousChoiceSection = () => {
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+    <section id="choice" className="py-20 px-4 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-16">
@@ -107,9 +107,12 @@ const ConsciousChoiceSection = () => {
             <strong className="text-yellow-300"> Flexibility is intelligence, not weakness.</strong>
           </p>
           
-          <button className="mt-6 bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+          <a 
+            href="#waitlist" 
+            className="mt-6 bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-block"
+          >
             Start Celebrating Your Choices
-          </button>
+          </a>
         </div>
       </div>
     </section>

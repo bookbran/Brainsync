@@ -39,7 +39,7 @@
 When starting a new development step, use this prompt template to ensure comprehensive understanding and proper implementation:
 
 ```
-I'm working on implementing [STEP_NAME] from the goodberry MVP development roadmap. As the technical lead, please take charge of this implementation by:
+I'm working on implementing [Enhanced Conversation Engine with Structured Prioritization] from the goodberry MVP development roadmap. As the technical lead, please take charge of this implementation by:
 
 1. First, reviewing these key documents:
    - `gogetit.md` - For the overall development roadmap and step details

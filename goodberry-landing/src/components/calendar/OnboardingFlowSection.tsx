@@ -19,6 +19,40 @@ const OnboardingFlowSection = () => {
   const [activePhase, setActivePhase] = useState(0);
   const [activeExample, setActiveExample] = useState<'planning' | 'calendar' | 'support'>('calendar');
 
+  // Listen for URL hash changes to auto-set state
+  React.useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash === '#brain-trap-support') {
+        setActiveExample('support');
+        setActivePhase(0); // Auto-select "10:30 PM First Nudge"
+        // Clear the hash after setting state
+        setTimeout(() => {
+          if (window.location.hash === '#brain-trap-support') {
+            window.history.replaceState(null, '', window.location.pathname);
+          }
+        }, 100);
+      } else if (hash === '#calendar-integration-action') {
+        setActiveExample('calendar');
+        // Clear the hash after setting state
+        setTimeout(() => {
+          if (window.location.hash === '#calendar-integration-action') {
+            window.history.replaceState(null, '', window.location.pathname);
+          }
+        }, 100);
+      }
+    };
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    // Check hash on mount
+    handleHashChange();
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
   const onboardingPhases = [
     {
       title: "Opening Conversation",
@@ -107,7 +141,7 @@ const OnboardingFlowSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section id="setup" className="py-20 bg-white">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
@@ -128,8 +162,8 @@ const OnboardingFlowSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Left Column - Phase Navigation */}
-          <div className="lg:col-span-1">
+          {/* Left Column - Phase Navigation - Desktop Only */}
+          <div className="hidden lg:block lg:col-span-1">
             {/* Animated Arrow Call-to-Action */}
             <div className="text-center mb-6">
               <div className="inline-flex flex-col items-center">
@@ -180,8 +214,10 @@ const OnboardingFlowSection = () => {
             </div>
           </div>
 
-          {/* Right Column - Conversation Preview */}
-          <div className="lg:col-span-2">
+          {/* Right Column - Conversation Preview - Full width on mobile */}
+          <div className="col-span-full lg:col-span-2">
+
+
             <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 shadow-xl mt-16">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-bold text-gray-900">
@@ -252,6 +288,36 @@ const OnboardingFlowSection = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Mobile Arrow Navigation */}
+              <div className="lg:hidden mt-6 flex items-center justify-between">
+                <button
+                  onClick={() => setActivePhase(activePhase > 0 ? activePhase - 1 : onboardingPhases.length - 1)}
+                  className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95"
+                >
+                  <svg className="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                
+                <div className="text-center px-4">
+                  <p className="text-sm font-medium text-gray-600">
+                    {activePhase + 1} of {onboardingPhases.length}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Swipe to explore conversations
+                  </p>
+                </div>
+                
+                <button
+                  onClick={() => setActivePhase(activePhase < onboardingPhases.length - 1 ? activePhase + 1 : 0)}
+                  className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95"
+                >
+                  <svg className="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -297,7 +363,13 @@ const OnboardingFlowSection = () => {
               ].map((tab) => (
                 <button
                   key={tab.key}
-                  onClick={() => setActiveExample(tab.key as 'planning' | 'calendar' | 'support')}
+                  onClick={() => {
+                    setActiveExample(tab.key as 'planning' | 'calendar' | 'support');
+                    // Auto-select "10:30 PM First Nudge" when Brain Trap Support is clicked
+                    if (tab.key === 'support') {
+                      setActivePhase(0);
+                    }
+                  }}
                   className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center space-x-2 ${
                     activeExample === tab.key
                       ? 'bg-purple-100 text-purple-900 shadow-md'
@@ -386,10 +458,10 @@ const OnboardingFlowSection = () => {
 
           {/* Calendar Integration Example */}
           {activeExample === 'calendar' && (
-            <div className="bg-white rounded-2xl p-8 shadow-xl border border-blue-200">
+            <div id="calendar-integration" className="bg-white rounded-2xl p-8 shadow-xl border border-blue-200">
               <div className="flex items-center mb-6">
                 <Calendar className="w-6 h-6 text-blue-600 mr-3" />
-                <h4 className="text-2xl font-bold text-gray-900">Calendar Integration in Action</h4>
+                <h4 id="calendar-integration-action" className="text-2xl font-bold text-gray-900">Calendar Integration in Action</h4>
               </div>
 
               {/* Interactive Month Progression */}
@@ -542,7 +614,10 @@ const OnboardingFlowSection = () => {
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3">
                       <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Brain className="w-4 h-4 text-white" />
+                        <span className="text-sm" style={{
+                          filter: 'hue-rotate(340deg) saturate(2.8) brightness(0.9) contrast(1.3)',
+                          textShadow: '0 0 5px rgba(190, 18, 60, 0.9), 0 0 10px rgba(219, 39, 119, 0.6), 0 0 15px rgba(136, 19, 55, 0.5)'
+                        }}>🫐</span>
                       </div>
                       <div className="flex-1">
                         <div className="bg-gray-100 rounded-2xl rounded-tl-md p-3 shadow-sm">
@@ -603,7 +678,7 @@ const OnboardingFlowSection = () => {
               {/* Calendar View - With Added Padding */}
               <div className="mt-12 grid lg:grid-cols-5 gap-8">
                 {/* Calendar View */}
-                <div className="lg:col-span-5">
+                <div className="lg:col-span-5 w-full max-w-full overflow-hidden">
                   <h5 className="font-bold text-gray-900 mb-4">
                     Your Week View - {
                       activePhase === 0 ? 'Month 1 (Basic Structure)' :
@@ -611,8 +686,55 @@ const OnboardingFlowSection = () => {
                       'Month 3 (Full ADHD Flow)'
                     }
                   </h5>
-                  <div className="bg-gray-50 rounded-xl p-4">
-                    <div className="relative" style={{ height: '900px' }}>
+                  
+                  {/* Mobile Month Navigation - Right above calendar */}
+                  <div className="lg:hidden mb-4 flex justify-center px-2 w-full max-w-full overflow-hidden">
+                    <div className="bg-white rounded-xl p-4 shadow-lg border border-blue-200 w-full max-w-sm min-w-0">
+                      <p className="text-sm text-gray-700 text-center mb-3 font-medium">📅 Tap to switch months:</p>
+                      <div className="flex space-x-2">
+                        <button
+                          onClick={() => setActivePhase(0)}
+                          className={`flex-1 px-3 py-3 rounded-lg text-xs font-semibold transition-all duration-300 min-h-[50px] ${
+                            activePhase === 0 
+                              ? 'bg-blue-600 text-white shadow-lg transform scale-105' 
+                              : 'bg-gray-100 text-gray-600 hover:bg-gray-200 active:bg-gray-300'
+                          }`}
+                        >
+                          <div className="font-bold">Month 1</div>
+                          <div className="text-xs opacity-75 mt-1">Basic</div>
+                        </button>
+                        <button
+                          onClick={() => setActivePhase(1)}
+                          className={`flex-1 px-3 py-3 rounded-lg text-xs font-semibold transition-all duration-300 min-h-[50px] ${
+                            activePhase === 1 
+                              ? 'bg-blue-600 text-white shadow-lg transform scale-105' 
+                              : 'bg-gray-100 text-gray-600 hover:bg-gray-200 active:bg-gray-300'
+                          }`}
+                        >
+                          <div className="font-bold">Month 2</div>
+                          <div className="text-xs opacity-75 mt-1">Energy</div>
+                        </button>
+                        <button
+                          onClick={() => setActivePhase(2)}
+                          className={`flex-1 px-3 py-3 rounded-lg text-xs font-semibold transition-all duration-300 min-h-[50px] ${
+                            activePhase === 2 
+                              ? 'bg-blue-600 text-white shadow-lg transform scale-105' 
+                              : 'bg-gray-100 text-gray-600 hover:bg-gray-200 active:bg-gray-300'
+                          }`}
+                        >
+                          <div className="font-bold">Month 3</div>
+                          <div className="text-xs opacity-75 mt-1">Flow</div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mobile calendar container with proper width constraints */}
+                  <div className="w-full max-w-full overflow-hidden">
+                    <div className="bg-gray-50 rounded-xl p-4 w-full">
+                      {/* Mobile: Allow horizontal scroll, Desktop: Normal */}
+                      <div className="overflow-x-auto overflow-y-hidden w-full max-w-full">
+                        <div className="relative min-w-[1000px] md:min-w-0 w-max" style={{ height: '900px' }}>
                       {/* Time ruler background */}
                       <div className="absolute left-0 top-0 bottom-0 w-16 border-r border-gray-300 bg-gray-100">
                         {[6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((hour, index) => {
@@ -778,7 +900,24 @@ const OnboardingFlowSection = () => {
                           });
                         })()}
                       </div>
+                      </div>
                     </div>
+                  </div>
+                  
+                  {/* Mobile calendar helper */}
+                  <div className="lg:hidden mt-3 text-center">
+                    <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl px-4 py-3 border border-blue-200 shadow-sm">
+                      <svg className="w-5 h-5 text-blue-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l4-4m0 0l4-4m-4 4H3m18 0H9" />
+                      </svg>
+                      <p className="text-sm font-medium text-blue-700">
+                        👆 Swipe to explore full week
+                      </p>
+                      <svg className="w-5 h-5 text-blue-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -787,10 +926,10 @@ const OnboardingFlowSection = () => {
 
           {/* Weekly Support Example */}
           {activeExample === 'support' && (
-            <div className="bg-white rounded-2xl p-8 shadow-xl border border-pink-200">
+            <div id="brain-trap-support" className="bg-white rounded-2xl p-8 shadow-xl border border-pink-200">
               <div className="flex items-center mb-6">
                 <Heart className="w-6 h-6 text-pink-600 mr-3" />
-                <h4 className="text-2xl font-bold text-gray-900">Weekly Support System</h4>
+                <h4 id="weekly-support-system" className="text-2xl font-bold text-gray-900">Weekly Support System</h4>
               </div>
 
               <div className="space-y-8">

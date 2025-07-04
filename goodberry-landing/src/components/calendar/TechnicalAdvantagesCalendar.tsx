@@ -79,7 +79,7 @@ const TechnicalAdvantagesCalendar = () => {
 
           {/* Apps We're Considering Grid */}
           <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-2xl border border-gray-100 max-w-6xl mx-auto">
-            <div className="text-center mb-12">
+            <div id="labs" className="text-center mb-12">
               <h3 className="text-3xl font-bold text-gray-900 mb-4">
                 Apps We're Bubbling About 🧪
               </h3>
@@ -122,19 +122,27 @@ const TechnicalAdvantagesCalendar = () => {
             {/* Community Input */}
             <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-8 border border-purple-200">
               <div className="text-center">
-                <h4 className="text-2xl font-bold text-purple-900 mb-4">Help Us Build What You Actually Want</h4>
+                <h4 className="text-2xl font-bold text-purple-900 mb-4">Want to Shape What We Build Next?</h4>
                 <p className="text-purple-800 text-lg mb-6 max-w-2xl mx-auto">
-                  Which of these would genuinely make your life easier? We're not building features to check boxes - 
-                  we're building what our ADHD community actually needs.
+                  Join our waitlist to get early access <em>and</em> help us prioritize which integrations to build first. 
+                  We're not building features to check boxes - we're building what our ADHD community actually needs.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-                    Join the Conversation
-                  </button>
-                  <button className="border-2 border-purple-300 text-purple-700 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
-                    Share Your Wishlist
-                  </button>
+                <div className="bg-purple-100 rounded-lg p-4 mb-6 border-l-4 border-purple-400">
+                  <p className="text-purple-700 text-sm font-medium">
+                    💡 <strong>Pioneer Preview:</strong> As one of our Pioneer members, you'll be able to see and shape ideas about where we're headed after you're on our waitlist.
+                  </p>
                 </div>
+                <div className="flex justify-center">
+                  <a 
+                    href="#waitlist" 
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg"
+                  >
+                    Join Waitlist & Share Your App Wishlist 🚀
+                  </a>
+                </div>
+                <p className="text-sm text-purple-600 mt-4 opacity-80">
+                  ✨ After joining, you'll get access to our full integration roadmap and wishlist form
+                </p>
               </div>
             </div>
           </div>
@@ -142,7 +150,7 @@ const TechnicalAdvantagesCalendar = () => {
       </section>
 
       {/* Technical Advantages Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+      <section id="tech" className="py-20 px-4 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
         <div className="max-w-6xl mx-auto">
           {/* Section header */}
           <div className="text-center mb-16">

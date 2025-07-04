@@ -8,8 +8,12 @@ const Footer = () => {
         <div className="text-center">
           {/* Logo and tagline */}
           <div className="mb-8">
-            <h3 className="text-2xl font-bold mb-2 text-white">
-              🧠⚡ goodberry
+            <h3 className="text-2xl font-bold mb-2">
+              <span className="text-3xl mr-2" style={{
+                filter: 'hue-rotate(340deg) saturate(2.8) brightness(0.9) contrast(1.3)',
+                textShadow: '0 0 5px rgba(190, 18, 60, 0.9), 0 0 10px rgba(219, 39, 119, 0.6), 0 0 15px rgba(136, 19, 55, 0.5)'
+              }}>🫐</span>
+              <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">goodberry</span>
             </h3>
             <p className="text-gray-300">
               Celebrating your choices, honoring your brain

@@ -219,14 +219,7 @@ const CalendarHeroSection = () => {
           {/* Left Column - Text Content */}
           <div className="space-y-8">
             <div className="space-y-6">
-              {/* Goodberry Logo/Image */}
-              <div className="flex justify-center lg:justify-start mb-6">
-                <img 
-                  src="/goodberry.png" 
-                  alt="Goodberry - BrainSync Pro" 
-                  className="h-16 w-auto md:h-20 lg:h-24 object-contain drop-shadow-lg"
-                />
-              </div>
+
               
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">
                 <Calendar className="w-4 h-4" />
@@ -279,12 +272,18 @@ const CalendarHeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-lg">
+              <a 
+                href="#waitlist" 
+                className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-lg text-center"
+              >
                 {currentMessaging.cta1}
-              </button>
-              <button className="border-2 border-purple-300 text-purple-700 px-8 py-4 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
+              </a>
+              <a 
+                href="#demo" 
+                className="border-2 border-purple-300 text-purple-700 px-8 py-4 rounded-lg font-semibold hover:bg-purple-50 transition-colors text-center"
+              >
                 {currentMessaging.cta2}
-              </button>
+              </a>
             </div>
           </div>
 

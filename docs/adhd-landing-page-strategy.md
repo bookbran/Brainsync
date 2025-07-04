@@ -203,8 +203,7 @@
 ### 🌟 **Two Landing Page Approaches (Toggle Switch)**
 Your landing page brilliantly offers two different messaging approaches via a toggle switch:
 
-#### **📊 API Integration Landing Page** (Original Approach)
-**Components**: `HeroSection.tsx`, `InteractiveDemo.tsx`, `ProblemSection.tsx`, `SolutionSection.tsx`, `EmailPreview.tsx`, `TechnicalAdvantages.tsx`, `WaitlistSignup.tsx`, `Footer.tsx`
+
 
 #### **📅 Calendar First Landing Page** (Current Focus)  
 **Components**: `CalendarHeroSection.tsx`, `OnboardingFlowSection.tsx`, `CalendarEmailPreview.tsx`, `CalendarEvolutionSection.tsx`, `ConsciousChoiceSection.tsx`, `CalendarIntegrationSection.tsx`, `TechnicalAdvantagesCalendar.tsx`, `WaitlistSignupCalendar.tsx`, `Footer.tsx`

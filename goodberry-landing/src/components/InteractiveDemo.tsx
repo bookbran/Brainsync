@@ -23,7 +23,7 @@ const InteractiveDemo = () => {
   };
 
   return (
-    <section id="demo" className="py-20 px-4 bg-gradient-to-br from-blue-50 to-purple-50">
+    <section className="py-20 px-4 bg-gradient-to-br from-blue-50 to-purple-50">
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-16">
@@ -44,7 +44,7 @@ const InteractiveDemo = () => {
             
             {/* iPhone Frame */}
             <div className="bg-black rounded-[2.5rem] p-2 shadow-2xl">
-              <div className="bg-white rounded-[2.2rem] h-[600px] flex flex-col overflow-hidden">
+              <div className="bg-white rounded-[2.2rem] h-[28rem] sm:h-[32rem] md:h-[36rem] lg:h-[40rem] flex flex-col overflow-hidden">
                 {/* Status Bar */}
                 <div className="flex justify-between items-center px-6 py-2 text-black text-sm font-semibold">
                   <span>9:41</span>
@@ -141,7 +141,7 @@ const InteractiveDemo = () => {
             
             {/* iPhone Frame */}
             <div className="bg-black rounded-[2.5rem] p-2 shadow-2xl">
-              <div className="bg-white rounded-[2.2rem] h-[600px] flex flex-col overflow-hidden">
+              <div className="bg-white rounded-[2.2rem] h-[28rem] sm:h-[32rem] md:h-[36rem] lg:h-[40rem] flex flex-col overflow-hidden">
                 {/* Status Bar */}
                 <div className="flex justify-between items-center px-6 py-2 text-black text-sm font-semibold">
                   <span>9:46</span>

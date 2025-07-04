@@ -3,10 +3,102 @@ import { Calendar, Clock, Target, Heart, Zap, Smile, Brain, MessageCircle, Spark
 
 const CalendarHeroSection = () => {
   const [activePreview, setActivePreview] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const scrollToWaitlist = () => {
+    const waitlistElement = document.querySelector('#waitlist, .waitlist-section, [class*="waitlist"], [class*="WaitlistSignup"]');
+    if (waitlistElement) {
+      waitlistElement.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Close mobile menu if open
+    setIsMobileMenuOpen(false);
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    let element = null;
+    
+    // Map navigation items to actual section IDs or classes
+    switch (sectionId) {
+      case 'onboarding':
+        element = document.querySelector('#setup, [class*="OnboardingFlow"], [class*="Onboarding"]');
+        break;
+      case 'calendar-integration':
+        // Set hash to trigger state change, then scroll to section
+        window.location.hash = '#calendar-integration-action';
+        setTimeout(() => {
+          const onboardingSection = document.querySelector('#setup');
+          if (onboardingSection) {
+            onboardingSection.scrollIntoView({ behavior: 'smooth' });
+          }
+          setTimeout(() => {
+            const targetElement = document.querySelector('#calendar-integration-action');
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }, 300);
+        }, 100);
+        break;
+      case 'brain-trap':
+        // Set hash to trigger state change (auto-selects 10:30 PM), then scroll to section
+        window.location.hash = '#brain-trap-support';
+        setTimeout(() => {
+          const onboardingSection = document.querySelector('#setup');
+          if (onboardingSection) {
+            onboardingSection.scrollIntoView({ behavior: 'smooth' });
+          }
+          setTimeout(() => {
+            const targetElement = document.querySelector('#weekly-support-system');
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }, 300);
+        }, 100);
+        break;
+      case 'weekly-emails':
+        // First scroll to the EmailPreview section, then activate the followthrough tab
+        const emailSection = document.querySelector('#demo');
+        if (emailSection) {
+          emailSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        setTimeout(() => {
+          // Try to find and click the weekly support tab
+          const emailButtons = Array.from(document.querySelectorAll('button')).filter(btn => 
+            btn.textContent?.includes('Weekly Support')
+          );
+          if (emailButtons.length > 0) {
+            (emailButtons[0] as HTMLElement).click();
+          }
+        }, 500);
+        break;
+      case 'labs':
+        element = document.querySelector('#labs');
+        break;
+      default:
+        element = document.getElementById(sectionId);
+    }
+
+    if (element && sectionId !== 'calendar-integration' && sectionId !== 'brain-trap' && sectionId !== 'weekly-emails') {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Close mobile menu if open
+    setIsMobileMenuOpen(false);
+  };
 
   const previewFeatures = [
     {
-      title: "Opening Conversation",
+      title: "SMS Only",
+      subtitle: "No app to download!",
+      time: "😅",
+      content: {
+        isSMSOnly: true
+      }
+    },
+    {
+      title: "Opening SMS Conversation",
       subtitle: "Free-form goal exploration",
       time: "2:15",
       content: {
@@ -142,8 +234,8 @@ const CalendarHeroSection = () => {
   const messaging = {
     badge: "The Calendar Revolution for ADHD Brains",
     headline: "What If Your Calendar",
-    headlineHighlight: " Actually Understood ADHD?",
-    subheadline: "We have ADHD too and we know you've got 47 browser tabs open and three half-finished projects calling your name. Our AI builds calendars through conversation, gets you out of brain traps, helps you task-switch like a pro, and celebrates every choice you make (yes, even the questionable ones 😅). Finally, a calendar that works WITH your beautiful, chaotic brain.",
+    headlineHighlight: " Actually Understood ADHD",
+    subheadline: "AI that actually gets your ADHD brain and works WITH your beautiful chaos to build calendars that stick",
     realityCheck: {
       title: "Traditional calendars assume you'll stick to the plan. Ours assume you WON'T - and that's perfectly fine!",
       content: "We celebrate hyperfocus spirals, honor energy crashes, help you escape endless scroll traps, and turn task-switching from chaos into your secret superpower."
@@ -154,40 +246,215 @@ const CalendarHeroSection = () => {
       { icon: Heart, title: "All Choices Celebrated", desc: "Even the 'creative' ones" },
       { icon: Sparkles, title: "Gets Smarter Daily", desc: "Adapts to your patterns" }
     ],
-    cta1: "Join the Calendar Revolution",
+    cta1: "Get Your ADHD Support System",
     cta2: "See How It Gets You"
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-adhd-light via-white to-blue-50 pt-20 pb-24">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section className="relative overflow-hidden pb-24" style={{
+      background: `linear-gradient(70deg, 
+        #2563eb 0%, 
+        #2563eb 40%, 
+        #9333ea 70%, 
+        #ec4899 100%)`
+    }}>
+      {/* Integrated Navigation */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo/Brand */}
+          <div className="flex items-center cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <span className="text-2xl mr-2" style={{
+              filter: 'hue-rotate(340deg) saturate(2.8) brightness(0.9) contrast(1.3)',
+              textShadow: '0 0 5px rgba(190, 18, 60, 0.9), 0 0 10px rgba(219, 39, 119, 0.6), 0 0 15px rgba(136, 19, 55, 0.5)'
+            }}>🫐</span>
+            <span className="text-xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+              goodberry
+            </span>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden min-[900px]:flex items-center space-x-8">
+            <a 
+              href="#onboarding" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('onboarding'); }}
+              className="text-white hover:text-yellow-300 px-3 py-2 text-sm font-medium transition-colors"
+            >
+              Onboarding Demo
+            </a>
+
+            <a 
+              href="#calendar-integration" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('calendar-integration'); }}
+              className="text-white hover:text-yellow-300 px-3 py-2 text-sm font-medium transition-colors"
+            >
+              Calendar Integration
+            </a>
+
+            <a 
+              href="#brain-trap" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('brain-trap'); }}
+              className="text-white hover:text-yellow-300 px-3 py-2 text-sm font-medium transition-colors"
+            >
+              Brain Trap Support
+            </a>
+
+            <a 
+              href="#weekly-emails" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('weekly-emails'); }}
+              className="text-white hover:text-yellow-300 px-3 py-2 text-sm font-medium transition-colors"
+            >
+              Weekly Emails
+            </a>
+
+            <a 
+              href="#labs" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('labs'); }}
+              className="text-white hover:text-yellow-300 px-3 py-2 text-sm font-medium transition-colors"
+            >
+              Labs
+            </a>
+          </div>
+
+          {/* Desktop CTA Button */}
+          <div className="hidden min-[900px]:flex items-center">
+            <button 
+              onClick={scrollToWaitlist}
+              className="bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-6 py-2 rounded-md text-sm font-bold hover:from-yellow-300 hover:to-orange-300 transition-all duration-200 flex items-center group transform hover:scale-105"
+            >
+              Join waitlist
+              <svg className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="min-[900px]:hidden flex items-center">
+            <button
+              onClick={toggleMobileMenu}
+              className="text-white hover:text-yellow-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 p-2 transition-colors"
+            >
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        {isMobileMenuOpen && (
+          <div className="min-[900px]:hidden border-t border-white/20 bg-white/10 backdrop-blur-sm rounded-lg mt-2">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              <a 
+                href="#onboarding" 
+                onClick={(e) => { e.preventDefault(); scrollToSection('onboarding'); }}
+                className="block px-3 py-2 text-base text-white hover:bg-white/10 rounded-lg transition-colors"
+              >
+                Onboarding Demo
+              </a>
+
+              <a 
+                href="#calendar-integration" 
+                onClick={(e) => { e.preventDefault(); scrollToSection('calendar-integration'); }}
+                className="block px-3 py-2 text-base text-white hover:bg-white/10 rounded-lg transition-colors"
+              >
+                Calendar Integration
+              </a>
+
+              <a 
+                href="#brain-trap" 
+                onClick={(e) => { e.preventDefault(); scrollToSection('brain-trap'); }}
+                className="block px-3 py-2 text-base text-white hover:bg-white/10 rounded-lg transition-colors"
+              >
+                Brain Trap Support
+              </a>
+
+              <a 
+                href="#weekly-emails" 
+                onClick={(e) => { e.preventDefault(); scrollToSection('weekly-emails'); }}
+                className="block px-3 py-2 text-base text-white hover:bg-white/10 rounded-lg transition-colors"
+              >
+                Weekly Emails
+              </a>
+
+              <a 
+                href="#labs" 
+                onClick={(e) => { e.preventDefault(); scrollToSection('labs'); }}
+                className="block px-3 py-2 text-base text-white hover:bg-white/10 rounded-lg transition-colors"
+              >
+                Labs
+              </a>
+
+              <div className="pt-4 pb-3 border-t border-white/20">
+                <button 
+                  onClick={scrollToWaitlist}
+                  className="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-6 py-3 rounded-md text-sm font-bold hover:from-yellow-300 hover:to-orange-300 transition-all duration-200 flex items-center justify-center group transform hover:scale-105"
+                >
+                  Join waitlist
+                  <svg className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Main Hero Content */}
+      <div className="container mx-auto px-4 lg:px-8 pt-16">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-20">
           {/* Left Column - Text Content */}
           <div className="space-y-6 lg:space-y-8">
             <div className="space-y-4 lg:space-y-6">
-              {/* Goodberry Logo/Image */}
-              <div className="flex justify-center lg:justify-start mb-4 lg:mb-6">
-                <img 
-                  src="/goodberry.png" 
-                  alt="Goodberry - BrainSync Pro" 
-                  className="h-12 w-auto sm:h-16 md:h-20 lg:h-24 object-contain drop-shadow-lg"
-                />
-              </div>
-              
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-3 py-2 lg:px-4 lg:py-2 rounded-full text-sm font-medium">
                 <Calendar className="w-4 h-4" />
                 <span className="text-xs sm:text-sm">{messaging.badge}</span>
               </div>
               
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
                 {messaging.headline}
-                <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{messaging.headlineHighlight}</span>
+                <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">{messaging.headlineHighlight}</span>?
               </h1>
               
-              <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
-                {messaging.subheadline}
+              <p className="text-lg sm:text-xl lg:text-2xl text-white" style={{ lineHeight: '2.2' }}>
+                AI that actually gets your ADHD brain and works WITH your <span className="font-bold relative" style={{
+                  backgroundColor: '#fbbf24',
+                  color: '#be123c',
+                  padding: '4px 8px',
+                  borderRadius: '4px'
+                }}>beautiful chaos</span> to build <span className="font-bold relative" style={{
+                  backgroundColor: '#f59e0b',
+                  color: '#be123c',
+                  padding: '4px 8px',
+                  borderRadius: '4px'
+                }}>calendars that stick</span>
               </p>
+
+              <div className="mt-8 lg:mt-12">
+                <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 sm:justify-end">
+                  <a 
+                    href="#waitlist" 
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-lg text-sm lg:text-base text-center"
+                  >
+                    {messaging.cta1}
+                  </a>
+                  <a 
+                    href="#demo" 
+                    className="border-2 border-yellow-400 px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-yellow-400/10 transition-colors text-sm lg:text-base text-center text-white"
+                  >
+                    {messaging.cta2}
+                  </a>
+                </div>
+              </div>
             </div>
+
+            {/* Spacer to push content down */}
+            <div className="h-16 lg:h-24"></div>
 
             <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 lg:p-6 border-l-4 border-yellow-400">
               <div className="flex items-start space-x-3">
@@ -214,69 +481,13 @@ const CalendarHeroSection = () => {
                 </div>
               ))}
             </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
-              <a 
-                href="#waitlist" 
-                className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-lg text-sm lg:text-base text-center"
-              >
-                {messaging.cta1}
-              </a>
-              <a 
-                href="#demo" 
-                className="border-2 border-purple-300 text-purple-700 px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold hover:bg-purple-50 transition-colors text-sm lg:text-base text-center"
-              >
-                {messaging.cta2}
-              </a>
-            </div>
           </div>
 
           {/* Right Column - Interactive Phone Demo */}
           <div className="relative">
-            <div className="bg-white rounded-2xl shadow-2xl p-4 lg:p-8 border border-gray-100">
+            <div className="p-4 lg:p-8">
               <div className="space-y-6 lg:space-y-8">
-                {/* Navigation Header */}
-                <div className="text-center">
-                  <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-4 py-2 lg:px-5 lg:py-3 rounded-full text-sm lg:text-lg font-medium mb-6 lg:mb-8">
-                    <Sparkles className="w-4 h-4 lg:w-5 lg:h-5" />
-                    <span>Interactive Demo</span>
-                  </div>
-                  
-                  {/* Feature Navigation */}
-                  <div className="flex items-center justify-between mb-6 lg:mb-8">
-                    <button 
-                      onClick={prevPreview}
-                      className="p-2 lg:p-4 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-                    >
-                      <ChevronLeft className="w-5 h-5 lg:w-7 lg:h-7 text-gray-600" />
-                    </button>
-                    
-                    <div className="text-center flex-1 px-2">
-                      <h3 className="text-lg lg:text-3xl font-bold text-gray-900">{currentFeature.title}</h3>
-                      <p className="text-gray-600 text-sm lg:text-xl mt-1 lg:mt-2">{currentFeature.subtitle}</p>
-                    </div>
-                    
-                    <button 
-                      onClick={nextPreview}
-                      className="p-2 lg:p-4 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-                    >
-                      <ChevronRight className="w-5 h-5 lg:w-7 lg:h-7 text-gray-600" />
-                    </button>
-                  </div>
-
-                  {/* Feature Dots */}
-                  <div className="flex justify-center space-x-2 lg:space-x-3 mb-6 lg:mb-8">
-                    {previewFeatures.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setPreview(index)}
-                        className={`w-3 h-3 lg:w-4 lg:h-4 rounded-full transition-colors ${
-                          index === activePreview ? 'bg-purple-600' : 'bg-gray-300'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
+                {/* Remove all navigation header content - will be replaced below */}
                 
                 {/* Phone Screen Mockup */}
                 <div className="bg-gray-900 rounded-3xl p-3 lg:p-4 shadow-xl">
@@ -432,7 +643,10 @@ const CalendarHeroSection = () => {
                             {/* AI Commentary - Enhanced - Moved inside scrollable area */}
                             <div className="bg-gradient-to-r from-yellow-50 to-amber-50 rounded-lg p-2 lg:p-3 border border-yellow-200 mt-2 lg:mt-4">
                               <div className="flex items-start space-x-2">
-                                <Brain className="w-4 h-4 lg:w-5 lg:h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+                                <span className="text-xs lg:text-sm mt-0.5 flex-shrink-0" style={{
+                                  filter: 'hue-rotate(340deg) saturate(2.8) brightness(0.9) contrast(1.3)',
+                                  textShadow: '0 0 5px rgba(190, 18, 60, 0.9), 0 0 10px rgba(219, 39, 119, 0.6), 0 0 15px rgba(136, 19, 55, 0.5)'
+                                }}>🫐</span>
                                 <div className="flex-1 min-w-0">
                                   <p className="text-xs lg:text-base font-semibold text-amber-900">Smart Calendar Building</p>
                                   <p className="text-xs lg:text-sm text-amber-700 mt-0.5 lg:mt-1">✨ Preserving mental health gaps & respecting energy patterns</p>
@@ -501,7 +715,10 @@ const CalendarHeroSection = () => {
                           {/* Smart Calendar Building - Integrated into scrollable area */}
                           <div className="bg-gradient-to-r from-yellow-50 to-amber-50 rounded-lg p-2 lg:p-3 border border-yellow-200 mt-2 lg:mt-4">
                             <div className="flex items-start space-x-2">
-                              <Brain className="w-4 h-4 lg:w-5 lg:h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+                              <span className="text-xs lg:text-sm mt-0.5 flex-shrink-0" style={{
+                                filter: 'hue-rotate(340deg) saturate(2.8) brightness(0.9) contrast(1.3)',
+                                textShadow: '0 0 5px rgba(190, 18, 60, 0.9), 0 0 10px rgba(219, 39, 119, 0.6), 0 0 15px rgba(136, 19, 55, 0.5)'
+                              }}>🫐</span>
                               <div className="flex-1 min-w-0">
                                 <p className="text-xs lg:text-base font-semibold text-amber-900">Smart Calendar Building</p>
                                 <p className="text-xs lg:text-sm text-amber-700 mt-0.5 lg:mt-1">✨ Preserving mental health gaps & respecting energy patterns</p>
@@ -528,6 +745,48 @@ const CalendarHeroSection = () => {
                           </div>
                         </div>
                       </div>
+                    ) : currentFeature.content.isSMSOnly ? (
+                      /* SMS Only View - Simplified */
+                      <div className="flex flex-col h-full items-center justify-center p-4 lg:p-8">
+                                                 {/* Full Screen SMS Only Message */}
+                         <div className="w-full h-full flex flex-col justify-between text-center bg-gradient-to-br from-green-50 via-emerald-50 to-green-100 rounded-xl border-2 border-green-300 p-6 lg:p-12">
+                           
+                           {/* Top Section */}
+                           <div className="flex flex-col items-center">
+                             {/* Blueberry at top - gradient colored */}
+                             <div className="text-6xl lg:text-8xl xl:text-9xl" style={{
+                               filter: 'hue-rotate(340deg) saturate(2.8) brightness(0.9) contrast(1.3)',
+                               textShadow: '0 0 5px rgba(190, 18, 60, 0.9), 0 0 10px rgba(219, 39, 119, 0.6), 0 0 15px rgba(136, 19, 55, 0.5)'
+                             }}>
+                               🫐
+                             </div>
+                           </div>
+
+                           {/* Middle Section */}
+                           <div className="flex-1 flex flex-col items-center justify-center space-y-4 lg:space-y-6">
+                             {/* SMS only text */}
+                             <div className="text-3xl lg:text-5xl xl:text-6xl font-bold text-green-800">
+                               SMS only!
+                             </div>
+                             
+                             {/* Phone and whew emojis on their own line */}
+                             <div className="text-4xl lg:text-6xl xl:text-7xl space-x-4">
+                               📱 😅
+                             </div>
+
+                             <p className="text-lg lg:text-2xl xl:text-3xl text-green-700 leading-relaxed max-w-md">
+                               No downloads, updates, or app store hassles.
+                             </p>
+                           </div>
+
+                           {/* Bottom Section */}
+                           <div className="mt-auto">
+                             <p className="text-xl lg:text-3xl xl:text-4xl font-semibold text-green-800">
+                               Just text with <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">goodberry</span>
+                             </p>
+                           </div>
+                         </div>
+                      </div>
                     ) : (
                       /* Chat View */
                       <div className="flex flex-col h-full">
@@ -552,7 +811,10 @@ const CalendarHeroSection = () => {
                               {message.type === 'ai' && (
                                 <div className="flex items-start space-x-3 lg:space-x-5">
                                   <div className="w-10 h-10 lg:w-14 lg:h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <Brain className="w-5 h-5 lg:w-7 lg:h-7 text-white" />
+                                    <span className="text-lg lg:text-2xl" style={{
+                                      filter: 'hue-rotate(340deg) saturate(2.8) brightness(0.9) contrast(1.3)',
+                                      textShadow: '0 0 5px rgba(190, 18, 60, 0.9), 0 0 10px rgba(219, 39, 119, 0.6), 0 0 15px rgba(136, 19, 55, 0.5)'
+                                    }}>🫐</span>
                                   </div>
                                   <div className="flex-1">
                                     <div className="bg-gray-100 rounded-lg rounded-tl-sm p-3 lg:p-6">
@@ -611,11 +873,39 @@ const CalendarHeroSection = () => {
                   </div>
                 </div>
 
-                {/* Click to Explore */}
-                <div className="text-center">
-                  <p className="text-sm lg:text-lg text-gray-500">
-                    Click arrows or dots to explore features →
-                  </p>
+                {/* Mobile Arrow Navigation */}
+                <div className="mt-6 lg:mt-8 flex items-center justify-between">
+                  <button
+                    onClick={() => setActivePreview(activePreview > 0 ? activePreview - 1 : previewFeatures.length - 1)}
+                    className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95"
+                  >
+                    <svg className="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  
+                  <div className="text-center px-4 flex-1 max-w-xs">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
+                      <p className="text-sm lg:text-base font-semibold text-white">
+                        {currentFeature.title}
+                      </p>
+                      <p className="text-xs lg:text-sm text-white/80 mt-1">
+                        {currentFeature.subtitle}
+                      </p>
+                      <p className="text-xs text-white/60 mt-2">
+                        {activePreview + 1} of {previewFeatures.length}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <button
+                    onClick={() => setActivePreview(activePreview < previewFeatures.length - 1 ? activePreview + 1 : 0)}
+                    className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95"
+                  >
+                    <svg className="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>

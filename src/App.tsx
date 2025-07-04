@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Navigation from './components/Navigation';
 import HeroSection from './components/HeroSection';
 import InteractiveDemo from './components/InteractiveDemo';
 import ProblemSection from './components/ProblemSection';
@@ -13,6 +14,9 @@ import './App.css';
 function App() {
   return (
     <div className="App min-h-screen bg-gradient-to-br from-adhd-light via-white to-blue-50">
+      {/* Navigation - Stripe-inspired animated gradient */}
+      <Navigation />
+      
       {/* Hero Section - The Hook */}
       <HeroSection />
       

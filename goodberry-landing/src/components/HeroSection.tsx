@@ -31,9 +31,7 @@ const HeroSection = () => {
         {/* Subheadline */}
         <div className="mb-10">
           <p className="text-xl md:text-2xl text-adhd-gray max-w-4xl mx-auto leading-relaxed">
-            goodberry connects <span className="adhd-highlight">ALL your apps</span> to deliver gentle, 
-            choice-celebrating daily guidance via email. Built for ADHD brains who are 
-            <span className="adhd-highlight">tired of productivity pressure</span>.
+            AI that actually gets your ADHD brain and works WITH your <span className="adhd-highlight">beautiful chaos</span> to build <span className="adhd-highlight">calendars that stick</span>
           </p>
         </div>
 

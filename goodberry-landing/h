@@ -1,0 +1,3 @@
+[33m3ef98c8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m Fix mobile calendar container width constraints to prevent page overflow
+[33mb76a079[m[33m ([m[1;31morigin/master[m[33m)[m Fix mobile calendar overflow & improve UX - Add horizontal scroll, mobile navigation buttons, and swipe instructions while preserving desktop experience
+[33me21a1b9[m Initial commit - Goodberry ADHD Calendar App with logo, favicon, and lowercase title

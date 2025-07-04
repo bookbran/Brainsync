@@ -9,10 +9,179 @@
 - **Roadmap**: `docs/roadmap.md` - Implementation timeline
 - **Backend Code**: `src/` directory - Current implementation
 - **Landing Page**: `goodberry-landing/src/components/calendar/CalendarHeroSection.tsx` - Live demo
+- **🆕 Database Schema Script**: `goodberry-schema.sql` - Complete SQL setup for Enhanced Conversation Engine (Step 3)
 
 ### 🎯 **Scope Boundaries**
 - ✅ **In-Scope**: Conversational calendar data, mental health gaps, brain trap patterns, ADHD energy tracking
 - ❌ **Out-of-Scope**: External app integrations, generic productivity metrics, neurotypical calendar assumptions
+
+---
+
+## 📧 **Pre-Launch Waitlist System**
+
+### **Implementation Status**: ✅ LIVE - Full waitlist system with feedback collection
+
+**Purpose**: Capture pre-launch interest with research/feedback engagement tracking and duplicate prevention while maintaining collaborative tone and personalized user experience.
+
+### `waitlist`
+```sql
+CREATE TABLE waitlist (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  name VARCHAR(255), -- First name only for conversational feel
+  phone VARCHAR(50),
+  sms_consent BOOLEAN DEFAULT FALSE,
+  feedback_interest INTEGER DEFAULT 1 CHECK (feedback_interest >= 1 AND feedback_interest <= 5),
+  source VARCHAR(100) DEFAULT 'landing_page',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Performance indexes
+CREATE INDEX idx_waitlist_email ON waitlist(email);
+CREATE INDEX idx_waitlist_created_at ON waitlist(created_at DESC);
+CREATE INDEX idx_waitlist_feedback_interest ON waitlist(feedback_interest);
+CREATE INDEX idx_waitlist_source ON waitlist(source);
+
+-- Comments for documentation
+COMMENT ON COLUMN waitlist.feedback_interest IS 'Research engagement level: 1="dont contact about anything except launch" to 5="lets chat!"';
+COMMENT ON COLUMN waitlist.source IS 'Signup source tracking (calendar_landing, main_page, etc.)';
+```
+
+### `app_wishlist`
+```sql
+CREATE TABLE app_wishlist (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  email VARCHAR(255) NOT NULL,
+  wishlist_content TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Performance indexes  
+CREATE INDEX idx_app_wishlist_email ON app_wishlist(email);
+CREATE INDEX idx_app_wishlist_created_at ON app_wishlist(created_at DESC);
+
+COMMENT ON TABLE app_wishlist IS 'User feedback and feature requests for product development';
+```
+
+### **Waitlist System Features**
+
+#### **Research/Feedback Interest Slider**
+- **Scale**: 1-5 with dynamic descriptions
+- **Level 1**: "Don't contact me about anything other than to let me know it's ready"  
+- **Level 5**: "Let's chat! I want to help shape this thing"
+- **Default**: 1 (least intrusive)
+- **Database Field**: `feedback_interest` with CHECK constraint (1-5)
+
+#### **Duplicate Email Prevention**
+- **Method**: Unique constraint on email field + normalized checking (lowercase/trim)
+- **User Experience**: Friendly message "We already have you on the waitlist!"
+- **Backend Function**: `email_exists()` helper function for real-time checking
+
+#### **Personalized HP Animation**  
+- **Experience**: "[FirstName] has been redeemed! +1 HP! Thank goodness for goodberry! 🫐"
+- **Duration**: 3-second celebration animation post-signup
+- **Storage**: First name captured for personalization (changed from full name)
+
+#### **Admin Testing System**
+- **Test Emails**: `daniel.i.hahn@gmail.com`, `dan@masteringdecisions.com`, `dan@aportlandcareer.com`
+- **Behavior**: Bypass database insertion but show full post-signup experience
+- **Purpose**: Allow testing without database pollution
+- **Logging**: Console indicators for test mode
+
+### **Analytics Views**
+
+#### `waitlist_analytics`
+```sql
+CREATE VIEW waitlist_analytics AS
+SELECT 
+    COUNT(*) as total_signups,
+    COUNT(*) FILTER (WHERE sms_consent = true) as sms_opted_in,
+    COUNT(*) FILTER (WHERE phone IS NOT NULL) as with_phone,
+    ROUND(AVG(feedback_interest), 2) as avg_feedback_interest,
+    COUNT(*) FILTER (WHERE feedback_interest >= 4) as high_engagement_users,
+    COUNT(*) FILTER (WHERE created_at >= NOW() - INTERVAL '24 hours') as signups_last_24h,
+    COUNT(*) FILTER (WHERE created_at >= NOW() - INTERVAL '7 days') as signups_last_7d,
+    COUNT(*) FILTER (WHERE created_at >= NOW() - INTERVAL '30 days') as signups_last_30d
+FROM waitlist;
+```
+
+#### `feedback_interest_breakdown`
+```sql
+CREATE VIEW feedback_interest_breakdown AS
+SELECT 
+    feedback_interest,
+    COUNT(*) as count,
+    ROUND(COUNT(*) * 100.0 / NULLIF((SELECT COUNT(*) FROM waitlist), 0), 2) as percentage
+FROM waitlist
+GROUP BY feedback_interest
+ORDER BY feedback_interest;
+```
+
+#### `signup_sources`
+```sql
+CREATE VIEW signup_sources AS
+SELECT 
+    source,
+    COUNT(*) as count,
+    ROUND(COUNT(*) * 100.0 / NULLIF((SELECT COUNT(*) FROM waitlist), 0), 2) as percentage,
+    MAX(created_at) as last_signup
+FROM waitlist
+GROUP BY source
+ORDER BY count DESC;
+```
+
+### **Helper Functions**
+
+#### `get_waitlist_count()`
+```sql
+CREATE FUNCTION get_waitlist_count()
+RETURNS INTEGER
+LANGUAGE sql
+SECURITY DEFINER
+AS $$
+    SELECT COUNT(*)::INTEGER FROM waitlist;
+$$;
+```
+
+#### `email_exists(check_email TEXT)`
+```sql
+CREATE FUNCTION email_exists(check_email TEXT)
+RETURNS BOOLEAN
+LANGUAGE sql
+SECURITY DEFINER
+AS $$
+    SELECT EXISTS(SELECT 1 FROM waitlist WHERE LOWER(email) = LOWER(check_email));
+$$;
+```
+
+### **Row Level Security**
+```sql
+-- Enable RLS on waitlist tables
+ALTER TABLE waitlist ENABLE ROW LEVEL SECURITY;
+ALTER TABLE app_wishlist ENABLE ROW LEVEL SECURITY;
+
+-- Public access policies for signup forms
+CREATE POLICY "Enable insert for anonymous users" ON waitlist
+    FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Enable read for anonymous users" ON waitlist
+    FOR SELECT USING (true);
+
+CREATE POLICY "Enable insert for anonymous users" ON app_wishlist
+    FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Enable read for anonymous users" ON app_wishlist
+    FOR SELECT USING (true);
+```
+
+### **Integration with Main System**
+The waitlist system will transition users into the main ADHD-focused calendar system upon launch. Key connections:
+
+- **Email to User Migration**: Waitlist emails become initial user accounts
+- **Feedback Interest Tracking**: High-engagement users (4-5) prioritized for beta testing
+- **Research Participation**: Users with feedback_interest >= 4 contacted for user research
+- **Source Attribution**: Track which landing page/campaign drove highest-quality signups
+- **Onboarding Preparation**: Wishlist content helps customize initial onboarding conversation
 
 ---
 
@@ -791,58 +960,198 @@ CREATE INDEX idx_brain_traps_user_time ON brain_trap_detections(user_id, detecte
 CREATE INDEX idx_choice_prompts_user_time ON choice_prompts(user_id, sent_at);
 
 -- Analytics and reporting
-CREATE INDEX idx_optimizations_user_date ON calendar_optimizations(user_id, optimization_date);
-CREATE INDEX idx_weekly_emails_user_sent ON weekly_emails(user_id, sent_at);
+CREATE INDEX idx_success_timeline_user_date ON user_success_timeline(user_id, occurred_date);
+CREATE INDEX idx_sunday_planning_user_date ON sunday_planning_sessions(user_id, week_start_date);
+
+-- Memory and foundation
+CREATE INDEX idx_memory_context_user_type ON user_memory_context(user_id, context_type);
+CREATE INDEX idx_foundation_user_version ON user_foundation_documents(user_id, version);
 ```
 
 ---
 
-## 🚀 **Migration Strategy**
+## 🚀 **PHASE 1 STEP 3: ENHANCED CONVERSATION ENGINE WITH STRUCTURED PRIORITIZATION**
 
-### Phase 1: Core Calendar Tables
-1. Create `users`, `calendar_events`, `mental_health_gaps`
-2. Implement basic conversational calendar building
-3. Mental Health Gap preservation algorithm
+### **Implementation Status**: 🚀 READY TO DEPLOY - Complete 10-phase structured prioritization system
 
-### Phase 2: Conversation System
-1. Add `conversations`, `conversation_messages`
-2. Sunday planning session tracking
-3. Basic pattern recognition
-
-### Phase 3: Brain Trap Detection
-1. Implement `brain_trap_detections`, `choice_prompts`
-2. Late-night intervention system
-3. Choice framework engine
-
-### Phase 4: Advanced Analytics
-1. Full pattern learning system
-2. Calendar optimization engine
-3. Effectiveness tracking and user feedback loops
+### **Purpose**: 
+The Enhanced Conversation Engine transforms scattered ADHD brain dumps into systematic, values-aligned calendars through a revolutionary 10-phase structured prioritization methodology. This section adds the specific tables needed for Step 3 implementation.
 
 ---
 
-## 📊 **Key Metrics to Track**
+## 🎯 **STEP 3 SPECIFIC ENHANCEMENTS**
 
-### Calendar Health Metrics
-- **Mental Health Gap Preservation Rate**: % of weeks with protected decompression time
-- **Energy Pattern Alignment**: % of high-energy tasks scheduled during optimal times
-- **Buffer Time Effectiveness**: Average stress reduction from automatic spacing
+### Enhanced `conversations` Table (Add Step 3 Fields)
+```sql
+-- Add these fields to existing conversations table for Step 3
+ALTER TABLE conversations ADD COLUMN IF NOT EXISTS current_phase INTEGER DEFAULT 1; -- 1-10 for structured prioritization phases
+ALTER TABLE conversations ADD COLUMN IF NOT EXISTS phase_completion_status JSONB DEFAULT '{}'; -- track which phases are complete
+```
 
-### Conversation Quality Metrics
-- **Sunday Planning Completion Rate**: % of successful weekly planning sessions
-- **AI Understanding Accuracy**: % of user intents correctly interpreted
-- **User Satisfaction with Tone**: Rating of gentle, ADHD-friendly communication
+### Enhanced `conversation_messages` Table (Add Step 3 Fields)
+```sql
+-- Add these fields to existing conversation_messages table for Step 3
+ALTER TABLE conversation_messages ADD COLUMN IF NOT EXISTS phase_context INTEGER; -- which phase this message belongs to
+```
 
-### Brain Trap Intervention Metrics
-- **Detection Accuracy**: % of actual brain traps correctly identified
-- **Choice Response Rate**: % of users who respond to choice prompts
-- **Intervention Effectiveness**: % of brain traps successfully interrupted
+### `conversation_extracts` (Enhanced for Step 3)
+```sql
+CREATE TABLE IF NOT EXISTS conversation_extracts (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  conversation_id UUID REFERENCES conversations(id) ON DELETE CASCADE,
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  
+  -- Extract Classification
+  extract_type VARCHAR(50) NOT NULL, -- 'priority', 'value', 'constraint', 'energy_pattern', 'adhd_pattern', 'adhd_tax_transformation'
+  phase_number INTEGER, -- which phase (1-10) this came from
+  
+  -- Content
+  raw_content TEXT NOT NULL, -- what user actually said
+  structured_data JSONB NOT NULL, -- AI interpretation and categorization
+  confidence_score FLOAT DEFAULT 0.8,
+  
+  -- Categorization for Structured Prioritization
+  category VARCHAR(50), -- 'work', 'personal', 'health', 'family', 'creative'
+  priority_level INTEGER, -- 1-10 ranking
+  values_alignment JSONB, -- which core values this connects to
+  seasonal_relevance VARCHAR(20), -- 'current', 'future', 'seasonal'
+  
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+```
 
-### Long-term Success Metrics
-- **Calendar Satisfaction Growth**: "Finally works with my ADHD brain" sentiment over time
-- **Choice Awareness Development**: Growth in conscious decision-making
-- **Pattern Learning Accuracy**: AI improvement in predicting user needs
+### `user_priority_rankings` (NEW for Step 3)
+```sql
+CREATE TABLE IF NOT EXISTS user_priority_rankings (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  conversation_id UUID REFERENCES conversations(id),
+  
+  -- Priority Details
+  priority_title VARCHAR(255) NOT NULL,
+  priority_description TEXT,
+  category VARCHAR(50), -- 'work', 'personal', 'health', 'family', 'creative'
+  
+  -- Systematic Scoring (1-10 scale each)
+  values_alignment_score INTEGER CHECK (values_alignment_score >= 1 AND values_alignment_score <= 10),
+  energy_match_score INTEGER CHECK (energy_match_score >= 1 AND energy_match_score <= 10),
+  seasonal_relevance_score INTEGER CHECK (seasonal_relevance_score >= 1 AND seasonal_relevance_score <= 10),
+  constraint_compatibility_score INTEGER CHECK (constraint_compatibility_score >= 1 AND constraint_compatibility_score <= 10),
+  
+  -- Calculated Rankings
+  total_score INTEGER, -- sum of all scores
+  final_ranking INTEGER, -- 1-N ranking within category
+  tier_classification VARCHAR(10), -- 'tier_1', 'tier_2', 'tier_3'
+  
+  -- Context
+  current_life_season VARCHAR(100),
+  core_values_referenced JSONB,
+  energy_patterns_considered JSONB,
+  constraints_factored JSONB,
+  
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+```
+
+### `adhd_tax_transformations` (NEW for Step 3)
+```sql
+CREATE TABLE IF NOT EXISTS adhd_tax_transformations (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  conversation_id UUID REFERENCES conversations(id),
+  
+  -- Burdensome Task Details
+  task_title VARCHAR(255) NOT NULL,
+  task_description TEXT,
+  task_category VARCHAR(50), -- 'financial_admin', 'health_admin', 'legal_paperwork', 'home_maintenance'
+  mental_weight_rating INTEGER CHECK (mental_weight_rating >= 1 AND mental_weight_rating <= 10),
+  
+  -- Energizing Transformation
+  reward_activity VARCHAR(255) NOT NULL, -- immediate reward after task
+  energy_window_scheduled VARCHAR(100), -- when to do it (e.g., "Tuesday 10:30am post-workout")
+  estimated_duration_minutes INTEGER,
+  celebration_method VARCHAR(255), -- how to celebrate completion
+  
+  -- Transformation Strategy
+  progress_over_perfection BOOLEAN DEFAULT true,
+  minimum_viable_progress VARCHAR(255), -- what counts as progress
+  context_switching_support VARCHAR(255), -- what to do after draining task
+  
+  -- Tracking
+  scheduled_date DATE,
+  completion_status VARCHAR(20) DEFAULT 'planned', -- 'planned', 'in_progress', 'completed', 'rescheduled'
+  actual_progress_made TEXT,
+  user_energy_after INTEGER, -- 1-10 how they felt after
+  
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+```
+
+### Enhanced `calendar_events` Table (Add Step 3 Fields)
+```sql
+-- Add these fields to existing calendar_events table for Step 3
+ALTER TABLE calendar_events ADD COLUMN IF NOT EXISTS priority_tier VARCHAR(10); -- 'tier_1', 'tier_2', 'tier_3'
+ALTER TABLE calendar_events ADD COLUMN IF NOT EXISTS adhd_tax_pairing UUID REFERENCES adhd_tax_transformations(id); -- link to reward pairing
+ALTER TABLE calendar_events ADD COLUMN IF NOT EXISTS values_alignment JSONB; -- which core values this serves
+```
 
 ---
 
-*Built with 💙 for ADHD brains who deserve data structures that actually understand them* 
+## 🔒 **STEP 3 SPECIFIC INDEXES & SECURITY**
+
+```sql
+-- Step 3 specific indexes
+CREATE INDEX IF NOT EXISTS idx_priority_rankings_user ON user_priority_rankings(user_id, final_ranking);
+CREATE INDEX IF NOT EXISTS idx_adhd_tax_user_status ON adhd_tax_transformations(user_id, completion_status);
+CREATE INDEX IF NOT EXISTS idx_extracts_phase ON conversation_extracts(user_id, phase_number);
+CREATE INDEX IF NOT EXISTS idx_conversations_phase ON conversations(user_id, current_phase);
+
+-- Step 3 RLS policies
+CREATE POLICY "Users can manage own priority rankings" ON user_priority_rankings FOR ALL USING (user_id = auth.uid());
+CREATE POLICY "Users can manage own adhd tax items" ON adhd_tax_transformations FOR ALL USING (user_id = auth.uid());
+CREATE POLICY "Users can manage own conversation extracts" ON conversation_extracts FOR ALL USING (user_id = auth.uid());
+
+-- Enable RLS on new tables
+ALTER TABLE user_priority_rankings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE adhd_tax_transformations ENABLE ROW LEVEL SECURITY;
+ALTER TABLE conversation_extracts ENABLE ROW LEVEL SECURITY;
+```
+
+---
+
+## ✅ **STEP 3 VALIDATION COMMANDS**
+
+```sql
+-- Verify Step 3 tables were created
+SELECT tablename FROM pg_tables 
+WHERE schemaname = 'public' 
+    AND tablename IN ('user_priority_rankings', 'adhd_tax_transformations', 'conversation_extracts')
+ORDER BY tablename;
+
+-- Check Step 3 specific indexes
+SELECT indexname, tablename FROM pg_indexes 
+WHERE schemaname = 'public' 
+    AND indexname IN ('idx_priority_rankings_user', 'idx_adhd_tax_user_status', 'idx_extracts_phase')
+ORDER BY tablename;
+
+-- Verify Step 3 RLS policies
+SELECT tablename, policyname FROM pg_policies 
+WHERE schemaname = 'public'
+    AND tablename IN ('user_priority_rankings', 'adhd_tax_transformations', 'conversation_extracts')
+ORDER BY tablename;
+```
+
+---
+
+## 🎉 **DEPLOYMENT INSTRUCTIONS**
+
+1. **Run the Schema**: Copy `goodberry-schema.sql` into Supabase SQL Editor
+2. **Verify Tables**: Run validation queries to confirm setup
+3. **Test Basic Operations**: Create/read/delete test user
+4. **Begin Implementation**: Start building Enhanced Conversation Engine code
+
+**Database is ready for Enhanced Conversation Engine Step 3!**
+
+*Built with ADHD brains in mind - every table designed for neurodivergent success patterns.* 💙 

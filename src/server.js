@@ -5,14 +5,12 @@ const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const logger = require('./utils/logger');
-const { initializeScheduler } = require('./scheduler');
 
 // Import routes
 const healthRoutes = require('./routes/health');
-const dataRoutes = require('./routes/data');
-const analysisRoutes = require('./routes/analysis');
-const choiceRoutes = require('./routes/choices');
 const webhookRoutes = require('./routes/webhooks');
+const authRoutes = require('./routes/auth');
+// Future routes can be added here as the product grows
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,7 +19,7 @@ const PORT = process.env.PORT || 3000;
 app.use(helmet());
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://brainsyncpro.com'] 
+    ? ['https://goodberry.com'] // Update with your actual domain
     : ['http://localhost:3000', 'http://localhost:3001'],
   credentials: true
 }));
@@ -54,15 +52,15 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/health', healthRoutes);
-app.use('/api/data', dataRoutes);
-app.use('/api/analysis', analysisRoutes);
-app.use('/api/choices', choiceRoutes);
 app.use('/webhooks', webhookRoutes);
+app.use('/auth', authRoutes);
+// Waitlist routes will be added here when needed
+// Future API routes can be added here as the product grows
 
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({
-    message: '🧠💙 BrainSync Pro API - Choice empowerment for ADHD minds',
+    message: '🍇 goodberry API - ADHD-friendly calendar management',
     version: '1.0.0',
     status: 'active',
     documentation: '/health',
@@ -78,11 +76,13 @@ app.use('*', (req, res) => {
     availableEndpoints: [
       'GET /',
       'GET /health',
-      'POST /api/data/collect',
-      'POST /api/analysis/generate',
-      'POST /api/choices/prompt',
       'POST /webhooks/sms',
-      'POST /webhooks/email'
+      'GET /webhooks/test-sms',
+      'GET /webhooks/status',
+      'GET /auth/google',
+      'GET /auth/google/callback',
+      'GET /auth/google/test'
+      // More endpoints will be added as features are built
     ]
   });
 });
@@ -121,14 +121,9 @@ process.on('SIGINT', () => {
 
 // Start server
 app.listen(PORT, () => {
-  logger.info(`🚀 BrainSync Pro server running on port ${PORT}`);
+  logger.info(`🚀 goodberry server running on port ${PORT}`);
   logger.info(`🌍 Environment: ${process.env.NODE_ENV}`);
-  
-  // Initialize background jobs
-  if (process.env.NODE_ENV !== 'test') {
-    initializeScheduler();
-    logger.info('📅 Background scheduler initialized');
-  }
+  logger.info('🍇 Ready for ADHD-friendly calendar management features');
 });
 
 module.exports = app; 
